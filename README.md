@@ -8,7 +8,7 @@ Portfolio site for Blake Austin Walter. Plain HTML, CSS and a little JavaScript:
 wrangler.jsonc        Cloudflare settings (the Worker name must match the dashboard)
 public/index.html     The whole page, in commented blocks
 public/css/style.css  Colors, type and spacing (edit :root at the top)
-public/js/main.js     Filters, close buttons, project links, video button, image viewer
+public/js/main.js     Opening projects, project links, video button, image viewer
 public/img/<project>/ Images, one folder per project
 public/video/         Video files (add hero-loop.mp4 here)
 public/cv/            CV PDF (add blake-austin-walter-cv.pdf here)
@@ -23,7 +23,6 @@ Each section of `index.html` starts with a comment like `<!-- BLOCK: project | O
 To add a project, copy any project block and change:
 
 - `id="..."`: a short name with hyphens. It becomes the project's link, for example `baw.haus/#one-north-quay`.
-- `data-tags="..."`: `architecture`, `film`, or both separated by a space. This sets which filter button shows it.
 - The main image in `<figure class="project-image">`. It shows as a strip in the list and in full when the project opens. Set `style="--ratio: 1600 / 1200"` on the figure to the image's width and height. To choose which part shows in the strip, add `style="object-position: 50% 80%"` to the `<img>` (left-right %, top-bottom %).
 - The title, location and role, and the one-line description. The description becomes the first line of the text when the project opens.
 - The text, facts and credit in `<div class="project-body">`.

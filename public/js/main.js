@@ -1,9 +1,8 @@
 /* baw.haus interactions. Plain JavaScript, no libraries.
-   1. Filter buttons
-   2. Opening and closing projects (with the thumbnail growing into the full image)
-   3. Project links (baw.haus/#project-id)
-   4. Hero video pause button
-   5. Lightbox for full-size images */
+   1. Opening and closing projects (with the thumbnail growing into the full image)
+   2. Project links (baw.haus/#project-id)
+   3. Hero video pause button
+   4. Lightbox for full-size images */
 
 (function () {
   var projects = Array.prototype.slice.call(document.querySelectorAll(".project"));
@@ -15,22 +14,7 @@
     return Array.prototype.slice.call(root.querySelectorAll(selector));
   }
 
-  /* 1. Filters: each project's data-tags lists its categories */
-  var filterButtons = all(document, ".filters button");
-  filterButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      var filter = button.dataset.filter;
-      filterButtons.forEach(function (b) {
-        b.setAttribute("aria-pressed", String(b === button));
-      });
-      projects.forEach(function (project) {
-        var tags = (project.dataset.tags || "").split(" ");
-        project.hidden = !(filter === "all" || tags.indexOf(filter) !== -1);
-      });
-    });
-  });
-
-  /* 2. Opening and closing projects */
+  /* 1. Opening and closing projects */
   function setOpen(project, open) {
     project.classList.toggle("is-open", open);
     project.querySelector(".project-toggle").setAttribute("aria-expanded", String(open));
@@ -151,7 +135,7 @@
     });
   });
 
-  /* 3. Project links: baw.haus/#its-id opens that project */
+  /* 2. Project links: baw.haus/#its-id opens that project */
   function openFromHash() {
     var id = decodeURIComponent(window.location.hash.slice(1));
     if (!id) return;
@@ -165,7 +149,7 @@
   openFromHash();
   window.addEventListener("hashchange", openFromHash);
 
-  /* 4. Hero video: the pause button appears only once the video plays */
+  /* 3. Hero video: the pause button appears only once the video plays */
   var video = document.getElementById("hero-video");
   var videoToggle = document.querySelector(".video-toggle");
   if (video && videoToggle) {
@@ -186,7 +170,7 @@
     });
   }
 
-  /* 5. Lightbox: click an image in an open project to see it full size */
+  /* 4. Lightbox: click an image in an open project to see it full size */
   var lightbox = document.querySelector(".lightbox");
   if (lightbox && typeof lightbox.showModal === "function") {
     var lightboxImg = lightbox.querySelector("img");

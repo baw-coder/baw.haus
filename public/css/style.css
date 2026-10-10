@@ -27,7 +27,7 @@
   /* Project list */
   --thumb-width: clamp(260px, 36vw, 520px);
   --thumb-height: calc(var(--thumb-width) * 0.265);  /* the strip's shape */
-  --peek: 14px;                                       /* hover growth */
+  --peek: 32px;                                       /* hover growth */
 
   /* Motion */
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -146,8 +146,6 @@ a:hover { text-decoration-color: currentColor; }
   gap: 24px;
 }
 
-.hero-links { display: flex; flex-wrap: wrap; gap: 4px 28px; }
-
 .hero-media {
   flex: 1 1 520px;
   max-width: 720px;
@@ -190,45 +188,21 @@ a:hover { text-decoration-color: currentColor; }
 .video-toggle.is-paused .icon-play { display: block; }
 .video-toggle.is-paused .icon-pause { display: none; }
 
-/* ---------- Work: heading and filters ---------- */
+/* ---------- Work ---------- */
 
-.section-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px 40px;
-  padding-bottom: var(--space-s);
-}
-
-.filters { display: flex; flex-wrap: wrap; gap: 10px; }
-.filters button {
-  min-height: 44px;
-  padding: 0 22px;
-  border-radius: 999px;
-  border: 1px solid rgba(243, 239, 233, 0.35);
-  background: transparent;
-  color: var(--text);
-  font: var(--caption);
-  cursor: pointer;
-}
-.filters button:hover { border-color: var(--text); }
-.filters button[aria-pressed="true"] {
-  background: var(--text);
-  border-color: var(--text);
-  color: var(--ink);
-}
+.section-head { padding-bottom: var(--space-s); }
 
 /* ---------- Work: project entries ----------
    Closed: thumbnail | title + one line | location + role | +
-   Open:   large image | title, location, role, then all the text | ×
+   Open:   large image | title, then all the text | location + role | ×
            and a gallery across the full width underneath.
-   The same elements move between the two layouts; js/main.js animates it. */
+   Location and role stay level with the title in both states.
+   js/main.js animates between the two layouts. */
 
 .project {
   position: relative;
   display: grid;
-  grid-template-columns: var(--thumb-width) minmax(0, 1fr) 230px 28px;
+  grid-template-columns: var(--thumb-width) minmax(0, 1fr) 220px 28px;
   grid-template-areas:
     "image title meta plus"
     "image blurb meta plus";
@@ -239,20 +213,18 @@ a:hover { text-decoration-color: currentColor; }
   padding: var(--space-s) 0;
   cursor: pointer;
   scroll-margin-top: 24px;
+  transition: grid-template-columns 0.45s var(--ease), padding 0.45s var(--ease);
 }
 
 .project.is-open {
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) 28px;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) 220px 28px;
   grid-template-areas:
-    "image   title   plus"
-    "image   meta    ."
-    "image   blurb   ."
-    "image   body    ."
-    "gallery gallery gallery";
-  grid-template-rows: auto auto auto 1fr auto;
-  column-gap: 4vw;
-  row-gap: 0;
-  padding: var(--space-m) 0;
+    "image   title   meta    plus"
+    "image   blurb   meta    ."
+    "image   body    .       ."
+    "gallery gallery gallery gallery";
+  grid-template-rows: auto auto 1fr auto;
+  padding-bottom: var(--space-m);
   cursor: auto;
 }
 
@@ -262,27 +234,25 @@ a:hover { text-decoration-color: currentColor; }
   grid-area: image;
   position: relative;
   overflow: hidden;
-  width: var(--thumb-width);
+  width: 100%;
   height: var(--thumb-height);
-  transition:
-    width 0.45s var(--ease),
-    height 0.45s var(--ease),
-    margin 0.45s var(--ease);
+  transition: height 0.45s var(--ease);
 }
 .project.is-open .project-image {
-  width: 100%;
   height: auto;
   aspect-ratio: var(--ratio, 3 / 2);
 }
+.project.is-animating,
 .project.is-animating .project-image { transition: none; }
 
-/* Hovering a closed entry previews the opening: the strip grows a little
-   to the right and downward without moving anything else */
+/* Hovering a closed entry previews the opening: the image grows a little
+   wider and taller, the text moves over and the entry gets taller */
 @media (hover: hover) and (min-width: 761px) {
+  .project:not(.is-open):hover {
+    grid-template-columns: calc(var(--thumb-width) + var(--peek)) minmax(0, 1fr) 220px 28px;
+  }
   .project:not(.is-open):hover .project-image {
-    width: calc(var(--thumb-width) + 2 * var(--peek));
-    height: calc(var(--thumb-height) + 2 * var(--peek));
-    margin-bottom: calc(-2 * var(--peek));
+    height: calc(var(--thumb-height) + var(--peek));
   }
   .project.is-open .project-image:hover .credit { opacity: 1; }
 }
@@ -328,7 +298,6 @@ a:hover { text-decoration-color: currentColor; }
   flex-direction: column;
   color: var(--text-dim);
 }
-.project.is-open .project-meta { margin-bottom: 20px; }
 
 /* The one-line description: dim in the list, ordinary text once open */
 .project-blurb {
@@ -424,8 +393,8 @@ a:hover { text-decoration-color: currentColor; }
     grid-template-areas:
       "image image"
       "title plus"
-      "blurb blurb"
-      "meta  meta";
+      "meta  meta"
+      "blurb blurb";
     row-gap: 4px;
   }
   .project.is-open {
@@ -437,15 +406,12 @@ a:hover { text-decoration-color: currentColor; }
       "body    body"
       "gallery gallery"
       "close   close";
-    padding: var(--space-s) 0 var(--space-m);
   }
   .project-image {
-    width: 100%;
     height: auto;
     aspect-ratio: 400 / 106;
     margin-bottom: 14px;
   }
-  .project.is-open .project-image { margin-bottom: 18px; }
   .project-gallery,
   .project-gallery.cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: var(--space-s); }
 }

@@ -1,0 +1,9 @@
+{
+  // The Worker's name in the Cloudflare dashboard must match this, or builds fail.
+  "name": "baw-haus",
+  "compatibility_date": "2026-10-09",
+  // Everything inside ./public is served as the website.
+  "assets": {
+    "directory": "./public"
+  }
+}

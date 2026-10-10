@@ -1,0 +1,3 @@
+# Keep every page and image out of search results and image search.
+/*
+  X-Robots-Tag: noindex, noimageindex

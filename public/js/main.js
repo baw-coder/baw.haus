@@ -58,6 +58,9 @@
   function animateLayout(project, open, done) {
     var moving = all(project, ".project-image, .project-title, .project-meta, .project-blurb, .plus");
     var image = project.querySelector(".project-image");
+    // Switch off the hover transition so the measurements are exact
+    project.classList.add("is-animating");
+    void project.offsetWidth;
     var before = moving.map(function (el) { return el.getBoundingClientRect(); });
     var startHeight = project.getBoundingClientRect().height;
 
@@ -96,6 +99,7 @@
 
     Promise.all(animations.map(function (a) { return a.finished; })).then(function () {
       project.style.overflow = "";
+      project.classList.remove("is-animating");
       done();
     });
   }

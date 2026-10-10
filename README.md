@@ -32,8 +32,15 @@ To add a project, copy any project block and change:
 Gray hatched boxes (`<div class="ph">[...]</div>`) mark images still to add. Replace each with:
 
 ```html
-<a class="zoom" href="img/project/file.jpg"><img src="img/project/file.jpg" alt="What the image shows" loading="lazy"></a>
+<figure class="tile">
+  <a class="zoom" href="img/project/file.jpg"><img src="img/project/file.jpg" alt="What the image shows" loading="lazy"></a>
+  <figcaption class="credit">Image: Who made it</figcaption>
+</figure>
 ```
+
+Image credits go in `<figcaption class="credit">` inside the image's figure. They stay hidden until someone hovers over the image (on phones they always show). Leave the line out for your own work.
+
+Type is three sizes only, set at the top of `css/style.css`: `--heading`, `--body` and `--caption`.
 
 The darkness of the background is `--bg-darken` at the top of `css/style.css` (0 = full color, 1 = black).
 

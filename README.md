@@ -26,16 +26,23 @@ To add a project, copy any project block and change:
 - The main image in `<figure class="project-image">`. It shows as a strip in the list and in full when the project opens. Set `style="--ratio: 1600 / 1200"` on the figure to the image's width and height. To choose which part shows in the strip, add `style="object-position: 50% 80%"` to the `<img>` (left-right %, top-bottom %).
 - The title, location and role, and the one-line description. The description becomes the first line of the text when the project opens.
 - The text, facts and credit in `<div class="project-body">`.
-- The images in `<div class="project-gallery">`: three across by default; add `cols-2` or `cols-4` to the class for two or four.
+- The images under it in `<div class="project-gallery">`, as rows (see below).
 
-Gray hatched boxes (`<div class="ph">[...]</div>`) mark images still to add. Replace each with:
+### Images under a project
+
+Each `<div class="g-row">` is one line of pictures. Pictures in a row share a height and split the width by their shape, so one picture fills the row, two share it, three share it, and so on. Mix rows however you like.
 
 ```html
-<figure class="tile">
-  <a class="zoom" href="img/project/file.jpg"><img src="img/project/file.jpg" alt="What the image shows" loading="lazy"></a>
-  <figcaption class="credit">Image: Who made it</figcaption>
-</figure>
+<div class="g-row">
+  <figure class="tile" style="--r: 1600 / 1067">
+    <a class="zoom" href="img/project/file.jpg"><img src="img/project/file.jpg" alt="What the image shows" loading="lazy"></a>
+    <figcaption class="credit">Image: Who made it</figcaption>
+  </figure>
+  <p class="note">A short annotation. It takes a quarter of the row.</p>
+</div>
 ```
+
+`--r` is the picture's width / height in pixels. A `<p class="note">` anywhere in a row adds an annotation beside the pictures. Gray hatched boxes (`<div class="tile ph">`) mark pictures still to add.
 
 Image credits go in `<figcaption class="credit">` inside the image's figure. They stay hidden until someone hovers over the image (on phones they always show). Leave the line out for your own work.
 

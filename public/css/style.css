@@ -193,22 +193,29 @@ a:hover { text-decoration-color: currentColor; }
 .section-head { padding-bottom: var(--space-s); }
 
 /* ---------- Work: project entries ----------
-   Closed: thumbnail | title + one line | location + role | +
-   Open:   large image | title, then all the text | location + role | ×
-           and a gallery across the full width underneath.
-   Location and role stay level with the title in both states.
+   Closed: thumbnail | title + one line            | location + role | +
+   Open:   image, 2/3 of the width | title (2/3 of the text) | location + role (1/3) | ×
+                                   | the text, full width of the right third
+           then images below, in rows of any mix, with notes among them.
+   Location, role and the + stay in the same place in both states.
    js/main.js animates between the two layouts. */
 
 .project {
+  /* The right third, and how the title and location share it */
+  --gap: 24px;
+  --text-area: calc((100% - var(--gap)) / 3);
+  --meta-width: calc((var(--text-area) - 2 * var(--gap) - 28px) / 3);
+  --title-width: calc((var(--text-area) - 2 * var(--gap) - 28px) * 2 / 3);
+
   position: relative;
   display: grid;
-  grid-template-columns: var(--thumb-width) minmax(0, 1fr) 220px 28px;
+  grid-template-columns: calc(var(--thumb-width) + var(--gap)) minmax(0, 1fr) var(--meta-width) 28px;
   grid-template-areas:
     "image title meta plus"
     "image blurb meta plus";
   grid-template-rows: auto 1fr;
   align-items: start;
-  column-gap: 40px;
+  column-gap: var(--gap);
   row-gap: 6px;
   padding: var(--space-s) 0;
   cursor: pointer;
@@ -217,13 +224,14 @@ a:hover { text-decoration-color: currentColor; }
 }
 
 .project.is-open {
-  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) 220px 28px;
+  grid-template-columns: calc((100% - var(--gap)) * 2 / 3) var(--title-width) var(--meta-width) 28px;
   grid-template-areas:
     "image   title   meta    plus"
-    "image   blurb   meta    ."
-    "image   body    .       ."
+    "image   blurb   blurb   blurb"
+    "image   body    body    body"
     "gallery gallery gallery gallery";
   grid-template-rows: auto auto 1fr auto;
+  row-gap: 0;
   padding-bottom: var(--space-m);
   cursor: auto;
 }
@@ -234,7 +242,7 @@ a:hover { text-decoration-color: currentColor; }
   grid-area: image;
   position: relative;
   overflow: hidden;
-  width: 100%;
+  margin-right: var(--gap);   /* with the column gap, 48px between image and text */
   height: var(--thumb-height);
   transition: height 0.45s var(--ease);
 }
@@ -249,7 +257,7 @@ a:hover { text-decoration-color: currentColor; }
    wider and taller, the text moves over and the entry gets taller */
 @media (hover: hover) and (min-width: 761px) {
   .project:not(.is-open):hover {
-    grid-template-columns: calc(var(--thumb-width) + var(--peek)) minmax(0, 1fr) 220px 28px;
+    grid-template-columns: calc(var(--thumb-width) + var(--gap) + var(--peek)) minmax(0, 1fr) var(--meta-width) 28px;
   }
   .project:not(.is-open):hover .project-image {
     height: calc(var(--thumb-height) + var(--peek));
@@ -296,6 +304,7 @@ a:hover { text-decoration-color: currentColor; }
   grid-area: meta;
   display: flex;
   flex-direction: column;
+  padding-top: 3px;
   color: var(--text-dim);
 }
 
@@ -306,7 +315,11 @@ a:hover { text-decoration-color: currentColor; }
   color: var(--text-dim);
   transition: color 0.45s var(--ease);
 }
-.project.is-open .project-blurb { color: var(--text); }
+.project.is-open .project-blurb {
+  max-width: none;
+  margin-top: 1.1em;
+  color: var(--text);
+}
 
 /* + that turns into × */
 .plus {
@@ -331,13 +344,12 @@ a:hover { text-decoration-color: currentColor; }
 .plus::after { transform: translate(-50%, -50%) rotate(90deg); }
 .project.is-open .plus { rotate: 45deg; }
 
-/* Text under the description */
+/* Text under the description: the full width of the right third */
 .project-body {
   grid-area: body;
   display: flex;
   flex-direction: column;
   gap: 1.1em;
-  max-width: 32em;
   margin-top: 1.1em;
 }
 
@@ -349,21 +361,39 @@ a:hover { text-decoration-color: currentColor; }
 }
 .facts dt { color: var(--text-dim); }
 
-/* Gallery: three across, tight gaps. Add "cols-2" or "cols-4" to change. */
+/* Images below: each .g-row is one line of pictures at a shared height.
+   Give every picture style="--r: width / height" and the row sizes itself,
+   so one picture fills the width, two share it, and so on. A .note is a
+   short annotation that takes a quarter of its row. */
 .project-gallery {
   grid-area: gallery;
   margin-top: var(--space-m);
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
-.project-gallery.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.project-gallery.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.project-gallery > * { aspect-ratio: 4 / 3; }
-.tile { position: relative; overflow: hidden; }
+.g-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+.tile {
+  position: relative;
+  flex: calc(var(--r, 1.5)) 1 0;
+  min-width: 0;
+  aspect-ratio: var(--r, 1.5);
+  overflow: hidden;
+}
 .tile:hover .credit { opacity: 1; }
 .tile a { display: block; width: 100%; height: 100%; cursor: zoom-in; }
 .tile img { width: 100%; height: 100%; object-fit: cover; }
+.note {
+  flex: 0 0 25%;
+  align-self: flex-end;
+  padding: 0 0 4px 16px;
+  font: var(--caption);
+  color: var(--text-dim);
+}
 
 /* "Close" only on phones, where open projects are long */
 .close {
@@ -410,10 +440,13 @@ a:hover { text-decoration-color: currentColor; }
   .project-image {
     height: auto;
     aspect-ratio: 400 / 106;
-    margin-bottom: 14px;
+    margin: 0 0 14px;
   }
-  .project-gallery,
-  .project-gallery.cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: var(--space-s); }
+  .project.is-open .project-blurb { margin-top: 0.6em; }
+  .project-gallery { margin-top: var(--space-s); }
+  .g-row { flex-wrap: wrap; }
+  .tile { flex: 1 1 calc(50% - 4px); }
+  .note { flex: 1 1 100%; padding: 0; }
 }
 
 /* ---------- About ---------- */

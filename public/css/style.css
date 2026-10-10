@@ -508,7 +508,7 @@ a:hover { text-decoration-color: currentColor; }
   gap: 12px;
 }
 
-.site-footer { padding: 0 0 40px; font: var(--caption); color: var(--text-dim); }
+.site-footer { padding: 0 0 40px; font: var(--caption); color: var(--text-dim); max-width: 36em; text-wrap: pretty; }
 
 /* ---------- Lightbox (full-size images) ---------- */
 

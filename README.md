@@ -9,9 +9,11 @@ wrangler.jsonc        Cloudflare settings (the Worker name must match the dashbo
 public/index.html     The whole page, in commented blocks
 public/css/style.css  Colors, type and spacing (edit :root at the top)
 public/js/main.js     Opening projects, project links, video button, image viewer
+public/fonts/         Jost, hosted with the site (free; license in OFL.txt)
 public/img/<project>/ Images, one folder per project
 public/video/         Video files (add hero-loop.mp4 here)
 public/cv/            CV PDF (add blake-austin-walter-cv.pdf here)
+public/img/ui/share.jpg  The picture shown when the link is shared (LinkedIn, Slack, iMessage)
 public/robots.txt     Blocks AI crawlers
 public/_headers       Tells search engines not to index the site
 ```

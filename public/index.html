@@ -10,10 +10,18 @@
   <meta property="og:title" content="Blake Austin Walter, AIA">
   <meta property="og:description" content="Architect and filmmaker. Associate Principal at KPF in London.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://baw.haus/">
+  <!-- Link previews (LinkedIn, Slack, iMessage). These need the full address, so they work once baw.haus points here. -->
+  <meta property="og:image" content="https://baw.haus/img/ui/share.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Blake Austin Walter, AIA. Architect and filmmaker.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://baw.haus/img/ui/share.jpg">
+  <link rel="apple-touch-icon" href="img/ui/touch-icon.png">
   <link rel="icon" href="img/ui/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;500&amp;display=swap">
+  <link rel="preload" href="fonts/jost-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/jost-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
 </head>
@@ -64,16 +72,15 @@
             <figcaption class="credit">Image: Kiasm / KPF, with modeling and Photoshop work by me</figcaption>
           </figure>
           <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">One North Quay</button></h3>
-          <p class="project-meta"><span>London</span><span>Facade lead, BIM lead</span></p>
-          <p class="project-blurb">Europe's tallest purpose-built commercial lab building. I led the facade package and the BIM team.</p>
+          <p class="project-meta"><span>London</span><span>Facade and BIM lead</span></p>
+          <p class="project-blurb">Europe's tallest purpose-built lab building, now rising at Canary Wharf.</p>
           <span class="plus" aria-hidden="true"></span>
           <div class="project-body" hidden>
-            <p>A 23-story, 823,000 sq ft life-sciences tower at Canary Wharf. After early lab feasibility studies and test fits, I took the roughly 120-sheet terracotta curtain-wall package through RIBA Stage 4 and into construction support, coordinating facade engineers, manufacturers and cost consultants.</p>
-            <p>As BIM lead for a team of about ten, I coordinated 10–15 consultant models with clash detection in Revizto and built the curved, faceted and adaptive panel families. I also designed the public realm and landscape, and worked with glazing artists on the facade's color gradient.</p>
+            <p>I led the terracotta facade package, about 120 sheets, through RIBA Stage 4 and into construction, working with facade engineers, manufacturers and cost consultants. I also designed the public realm and landscape, and worked with glazing artists on the facade's color gradient.</p>
+            <p>As BIM lead for a team of ten, I ran coordination across 10–15 consultant models and built the facade's curved and faceted panel families.</p>
             <dl class="facts">
               <dt>Client</dt><dd>Canary Wharf Group and Kadans Science Partner</dd>
-              <dt>Status</dt><dd>Under construction, completing 2027</dd>
-              <dt>Recognition</dt><dd>MIPIM Awards 2024 finalist; Digital Construction Awards 2026 finalist</dd>
+              <dt>Recognition</dt><dd>MIPIM Awards 2024 and Digital Construction Awards 2026, finalist</dd>
             </dl>
           </div>
           <div class="project-gallery" hidden>
@@ -98,15 +105,14 @@
             <figcaption class="credit">Image: Changi Airport Group</figcaption>
           </figure>
           <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">Changi Airport Terminal 5</button></h3>
-          <p class="project-meta"><span>Singapore</span><span>Roof, passenger flows</span></p>
-          <p class="project-blurb">A terminal for 50 million passengers a year, designed with Heatherwick Studio. I worked on the roof and passenger flows.</p>
+          <p class="project-meta"><span>Singapore</span><span>Roof and passenger flows</span></p>
+          <p class="project-blurb">A new terminal for 50 million passengers a year, designed with Heatherwick Studio.</p>
           <span class="plus" aria-hidden="true"></span>
           <div class="project-body" hidden>
-            <p>The competition-winning design for Changi's fifth terminal treats it as an extension of the city rather than just a machine for moving people.</p>
-            <p>The roof's geometry came from hand-placed control points and Grasshopper scripts for structure, glazing panels and drainage, all inside a structural grid that fixed where peaks and valleys could fall. In 2018 I also tested early machine-learning approaches to the roof; they fell short, and the design still rested on judgment across structure, drainage and operations.</p>
+            <p>The design treats the terminal as a piece of the city rather than a machine for moving people. I worked on passenger flows and on the roof, shaping it with hand-placed control points and Grasshopper scripts for structure, glazing and drainage, inside a grid that fixed where its peaks and valleys could fall.</p>
+            <p>In 2018 I also tested early machine learning on the roof. It fell short, and the design still came down to judgment.</p>
             <dl class="facts">
-              <dt>Status</dt><dd>Under construction since May 2025</dd>
-              <dt>Capacity</dt><dd>About 50 million passengers a year</dd>
+              <dt>Status</dt><dd>Under construction since 2025</dd>
               <dt>Design</dt><dd>KPF and Heatherwick Studio, with Architects 61</dd>
             </dl>
           </div>
@@ -128,15 +134,14 @@
           </figure>
           <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">99 City Road</button></h3>
           <p class="project-meta"><span>London</span><span>Facade lead</span></p>
-          <p class="project-blurb">A 36-story office tower at Old Street. I led the 250-sheet architectural and facade package.</p>
+          <p class="project-blurb">A 36-story office tower where Old Street meets the City of London.</p>
           <span class="plus" aria-hidden="true"></span>
           <div class="project-body" hidden>
-            <p>The 475,000 sq ft tower sits at the junction of Old Street and the City of London. I took the package through RIBA Stage 4, kept recurring client changes under control through addenda and revision cycles, and handled RFIs, shop drawings, mockups and factory visits.</p>
-            <p>When annotations drifted across the set, I had an LLM write a Revit script to fix them in bulk, tested it in the live model, then ran it across the package.</p>
+            <p>I led the architectural and facade package, about 250 sheets, through RIBA Stage 4, steering it through repeated client changes and handling RFIs, shop drawings, mockups and factory visits.</p>
+            <p>When annotations drifted across the set, I had an LLM write a Revit script to correct them in bulk, tested it on the live model, then ran it across the package.</p>
             <dl class="facts">
               <dt>Client</dt><dd>Endurance Land</dd>
-              <dt>Status</dt><dd>Main construction from 2026; completion targeted for 2030</dd>
-              <dt>Scale</dt><dd>36 stories, 475,000 sq ft</dd>
+              <dt>Completion</dt><dd>Targeted for 2030</dd>
             </dl>
           </div>
           <div class="project-gallery" hidden>
@@ -156,15 +161,14 @@
           </figure>
           <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">A Network of Lines That Intersect</button></h3>
           <p class="project-meta"><span>The Bartlett, UCL</span><span>Writer, director, animator</span></p>
-          <p class="project-blurb">My MArch thesis: a 10-minute Unreal Engine film about a world that knows it was built.</p>
+          <p class="project-blurb">My MArch thesis film: ten minutes inside a world that knows it was built.</p>
           <span class="plus" aria-hidden="true"></span>
           <div class="project-body" hidden>
-            <p>A world of architectural sets turned inside out and partly inhabited, recombining across an expanded East London site until their juxtapositions generate a fiction of their own. Drawing on Charlie Kaufman and Jorge Luis Borges, the film heightens diegetic disruptions and artificiality to build a subversive narrative, then turns to intimate moments of design: objects that connect you to real materials and to other worlds.</p>
-            <p>I designed and modeled the world, wrote the script and voiceover, planned the camera, made the sound and edited the film. A 10,000-word written thesis on reflexive worldbuilding accompanies it.</p>
+            <p>Architectural sets, turned inside out and partly inhabited, recombine across an expanded East London site until they start to generate a fiction of their own. Drawing on Charlie Kaufman and Jorge Luis Borges, the film leans into its own artificiality, then slows down for small moments of design: objects that put you in touch with real materials, and with other worlds.</p>
+            <p>I built the world, wrote the script and voiceover, planned the camera, made the sound and edited the film, alongside a 10,000-word thesis on reflexive worldbuilding.</p>
             <dl class="facts">
               <dt>Year</dt><dd>2020</dd>
-              <dt>Length</dt><dd>10 minutes</dd>
-              <dt>Made with</dt><dd>3ds Max, Unreal Engine, ZBrush, Houdini, Premiere Pro, After Effects</dd>
+              <dt>Made with</dt><dd>3ds Max, Unreal Engine, Houdini, Premiere Pro, After Effects</dd>
             </dl>
           </div>
           <div class="project-gallery" hidden>
@@ -194,14 +198,12 @@
           </figure>
           <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">The Bermondsey Project</button></h3>
           <p class="project-meta"><span>London</span><span>BIM lead</span></p>
-          <p class="project-blurb">A 1,500-home masterplan for Grosvenor on a former factory site. I was BIM lead for a team of eight.</p>
+          <p class="project-blurb">Grosvenor's 1,500-home masterplan for a Bermondsey factory site closed for 30 years.</p>
           <span class="plus" aria-hidden="true"></span>
           <div class="project-body" hidden>
-            <p>The site had been closed for 30 years; 35% of the new homes are affordable.</p>
-            <p>I co-wrote the BIM execution plan and set the worksharing, model and documentation standards for a development meant to become a digital twin. I built families, ran model audits, coordinated 10–15 consultant models and trained the team.</p>
+            <p>As BIM lead for a team of eight, I co-wrote the BIM execution plan and set the modeling and documentation standards for a development meant to become a digital twin. I built families, ran model audits, coordinated 10–15 consultant models and trained the team.</p>
             <dl class="facts">
-              <dt>Client</dt><dd>Grosvenor Britain &amp; Ireland</dd>
-              <dt>Recognition</dt><dd>MIPIM Awards 2021, Best Futura Mega Project; Planning Awards shortlist</dd>
+              <dt>Recognition</dt><dd>MIPIM Awards 2021, Best Futura Mega Project</dd>
             </dl>
           </div>
           <div class="project-gallery" hidden>
@@ -221,16 +223,11 @@
             <figcaption class="credit">Image: my own modeling and visualization</figcaption>
           </figure>
           <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">Platform 16</button></h3>
-          <p class="project-meta"><span>San Jose, California</span><span>Massing, facade design</span></p>
-          <p class="project-blurb">A million-square-foot office campus shaped by airport height limits. I developed the massing and facades.</p>
+          <p class="project-meta"><span>San Jose, California</span><span>Massing and facades</span></p>
+          <p class="project-blurb">A million-square-foot office campus, kept low by height limits from the nearby airport.</p>
           <span class="plus" aria-hidden="true"></span>
           <div class="project-body" hidden>
-            <p>Three office buildings at 440 West Julian Street in downtown San Jose. Two constraints drove the design: height limits from nearby Mineta San José Airport, and very long facades whose scale had to be broken down.</p>
-            <p>Working with lead designer Richard Kim from feasibility through design development, I developed the massing and facade design, coordinated facade engineers and manufacturers on the panels, and prepared code analyses, egress drawings and parts of the construction documents.</p>
-            <dl class="facts">
-              <dt>Scale</dt><dd>Three buildings, more than 1 million sq ft</dd>
-              <dt>Stages</dt><dd>Feasibility through design development</dd>
-            </dl>
+            <p>With heights capped, the challenge became breaking down three very long buildings. Working with lead designer Richard Kim from feasibility through design development, I shaped the massing and facades, worked with facade engineers and manufacturers on the panels, and prepared code analyses, egress drawings and parts of the construction documents.</p>
           </div>
           <div class="project-gallery" hidden>
             <div class="g-row">
@@ -248,15 +245,12 @@
             <span class="ph">[Image]</span>
           </figure>
           <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">Croydon Town Center</button></h3>
-          <p class="project-meta"><span>London</span><span>Urban design, visualization</span></p>
-          <p class="project-blurb">Two shopping centers remade as a mixed-use town center. I led parts of the urban design and directed the visuals.</p>
+          <p class="project-meta"><span>London</span><span>Urban design and visuals</span></p>
+          <p class="project-blurb">A competition-winning plan to remake two shopping centers as a mixed-use town center.</p>
           <span class="plus" aria-hidden="true"></span>
           <div class="project-body" hidden>
-            <p>A competition-winning proposal to turn the Whitgift Centre and Centrale into mixed-use urban blocks, adding density along streets and spaces shaped by the area's character. Reusing existing site elements cut the carbon footprint and kept some of the neighborhood's identity.</p>
-            <p>I also designed building facades and public spaces and tested the massing through view analysis.</p>
-            <dl class="facts">
-              <dt>Status</dt><dd>Competition win</dd>
-            </dl>
+            <p>The proposal turns the Whitgift Centre and Centrale into denser, mixed-use blocks, with streets and spaces drawn from the area's character. Reusing existing site elements cut carbon and kept some of the neighborhood's identity.</p>
+            <p>I led parts of the urban design, designed facades and public spaces, tested the massing through view analysis and directed the visualization.</p>
           </div>
           <div class="project-gallery" hidden>
             <div class="g-row">
@@ -275,11 +269,10 @@
           </figure>
           <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">Museum of Museums</button></h3>
           <p class="project-meta"><span>Deptford, London</span><span>The Bartlett, UCL</span></p>
-          <p class="project-blurb">A museum that absorbs other museums, drawn from the recursive ornament of Bavarian Rococo churches.</p>
+          <p class="project-blurb">A museum that absorbs other museums, after the recursive ornament of Bavarian Rococo churches.</p>
           <span class="plus" aria-hidden="true"></span>
           <div class="project-body" hidden>
-            <p>A proposal for a disused site in Deptford. The building's forms curve back on themselves to absorb pieces of other buildings, above all other museums.</p>
-            <p>The drawings are 3D collages built from 2D elements and 3D-printed ones.</p>
+            <p>On a disused site in Deptford, the building's forms curl back on themselves to take in pieces of other buildings, above all other museums. The drawings are 3D collages, built from 2D fragments and 3D-printed ones.</p>
           </div>
           <div class="project-gallery" hidden>
             <div class="g-row">
@@ -297,18 +290,21 @@
           <button type="button" class="close" hidden>Close</button>
         </article>
 
-        <!-- BLOCK: project | 5M -->
-        <article class="project" id="5m">
+        <!-- BLOCK: project | 415 Natoma -->
+        <article class="project" id="415-natoma">
           <figure class="project-image" style="--ratio: 3 / 2">
             <span class="ph">[Image]</span>
           </figure>
-          <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">5M</button></h3>
+          <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">415 Natoma</button></h3>
           <p class="project-meta"><span>San Francisco</span><span>Facade design</span></p>
-          <p class="project-blurb">A new mixed-use district in SoMa. I developed facade concepts through design development.</p>
+          <p class="project-blurb">The anchor office building of 5M, a new mixed-use neighborhood in SoMa.</p>
           <span class="plus" aria-hidden="true"></span>
           <div class="project-body" hidden>
-            <p>Facade concept and design development for KPF's work at 5M, a mixed-use district in San Francisco's SoMa.</p>
-            <p>Over six months I coordinated with structural and facade consultants and prepared code analyses, egress and life-safety drawings and parts of the construction documents under California requirements, including Title 24.</p>
+            <p>In KPF's New York office I developed the facade from concept through design development, coordinating with structural and facade consultants and preparing code analyses, egress drawings and parts of the construction documents under California's Title 24.</p>
+            <dl class="facts">
+              <dt>Client</dt><dd>Brookfield Properties</dd>
+              <dt>Scale</dt><dd>640,000 sq ft</dd>
+            </dl>
           </div>
           <div class="project-gallery" hidden>
             <div class="g-row">
@@ -327,7 +323,7 @@
           </figure>
           <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">EPCOT</button></h3>
           <p class="project-meta"><span>Speculative project</span></p>
-          <p class="project-blurb">A community of tomorrow that transmits its residents' idyllic dreams to the people living below.</p>
+          <p class="project-blurb">A community of tomorrow that beams its residents' idyllic dreams to the people living below.</p>
           <span class="plus" aria-hidden="true"></span>
           <div class="project-body" hidden>
             <p>An Experimental Prototype Community of Tomorrow, built to help the imagination produce fictions.</p>
@@ -352,7 +348,7 @@
 
       <div class="about-col">
         <h2>Experience</h2>
-        <div><p>Associate Principal</p><p class="dim">KPF, London, 2025–present</p><p class="dim">Interview, onboard and train staff; manage up to five people; client-facing lead on a large masterplan.</p></div>
+        <div><p>Associate Principal</p><p class="dim">KPF, London, 2025–present</p><p class="dim">Client lead on a large masterplan. I manage up to five people and help hire and train staff.</p></div>
         <div><p>Architectural Designer</p><p class="dim">KPF, London, 2020–2025</p></div>
         <div><p>Architectural Designer</p><p class="dim">KPF, New York, 2015–2018</p></div>
         <div><p>Architectural Intern</p><p class="dim">KPF, London, 2014</p></div>

@@ -4,6 +4,22 @@
    site follows.
    ========================================================================== */
 
+/* Jost, hosted with the site (free, SIL Open Font License: fonts/OFL.txt) */
+@font-face {
+  font-family: "Jost";
+  src: url("../fonts/jost-latin-300-normal.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Jost";
+  src: url("../fonts/jost-latin-500-normal.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Color */
   --ink: #04050c;                         /* page color behind everything */
@@ -289,7 +305,7 @@ a:hover { text-decoration-color: currentColor; }
 }
 .project.is-open .project-image > a { cursor: zoom-in; }
 
-.project-title { grid-area: title; }
+.project-title { grid-area: title; text-wrap: balance; }
 .project-toggle {
   padding: 0;
   border: 0;
@@ -306,6 +322,7 @@ a:hover { text-decoration-color: currentColor; }
   flex-direction: column;
   padding-top: 3px;
   color: var(--text-dim);
+  text-wrap: balance;   /* "Facade and / BIM lead", not "Facade and BIM / lead" */
 }
 
 /* The one-line description: dim in the list, ordinary text once open */

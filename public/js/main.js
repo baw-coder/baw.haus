@@ -23,20 +23,6 @@
     });
   }
 
-  function afterToggle(project, open) {
-    var top = project.getBoundingClientRect().top;
-    var smooth = reduceMotion.matches ? "auto" : "smooth";
-    if (open) {
-      history.replaceState(null, "", "#" + project.id);
-      if (top < 0 || top > window.innerHeight * 0.5) {
-        project.scrollIntoView({ block: "start", behavior: smooth });
-      }
-    } else {
-      history.replaceState(null, "", window.location.pathname + window.location.search);
-      if (top < 0) project.scrollIntoView({ block: "start", behavior: smooth });
-    }
-  }
-
   // Measure where things are, switch layouts, measure again, then animate
   // each piece from its old place and size to its new one.
   function animateLayout(project, open, done) {
@@ -91,9 +77,10 @@
   function toggle(project, open) {
     if (project.classList.contains("is-open") === open || project.dataset.busy) return;
 
+    // The page never scrolls by itself here and the address never changes,
+    // so scrolling while a project opens is never interrupted.
     if (reduceMotion.matches || typeof project.animate !== "function") {
       setOpen(project, open);
-      afterToggle(project, open);
       return;
     }
 
@@ -101,7 +88,6 @@
     var run = function () {
       animateLayout(project, open, function () {
         delete project.dataset.busy;
-        afterToggle(project, open);
       });
     };
 
@@ -128,9 +114,13 @@
         toggle(project, true);
       } else if (event.target.closest(".project-toggle, .plus, .close")) {
         event.preventDefault();
-        var fromClose = event.target.closest(".close");
+        // The phone-only Close button sits at the bottom of a long project,
+        // so take the reader back to the project's top as it closes
+        if (event.target.closest(".close")) {
+          project.scrollIntoView({ block: "start", behavior: reduceMotion.matches ? "auto" : "smooth" });
+          project.querySelector(".project-toggle").focus({ preventScroll: true });
+        }
         toggle(project, false);
-        if (fromClose) project.querySelector(".project-toggle").focus({ preventScroll: true });
       }
     });
   });

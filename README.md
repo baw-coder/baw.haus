@@ -18,14 +18,16 @@ public/_headers       Tells search engines not to index the site
 
 ## Editing the page
 
-Each section of `index.html` starts with a comment like `<!-- BLOCK: project | One North Quay -->`. To reorder, cut a whole block (from its comment down to its closing `</details>`) and paste it elsewhere.
+Each section of `index.html` starts with a comment like `<!-- BLOCK: project | One North Quay -->`. To reorder, cut a whole block (from its comment down to its closing `</article>`) and paste it elsewhere.
 
 To add a project, copy any project block and change:
 
 - `id="..."`: a short name with hyphens. It becomes the project's link, for example `baw.haus/#one-north-quay`.
 - `data-tags="..."`: `architecture`, `film`, or both separated by a space. This sets which filter button shows it.
-- The thumbnail, title, one-line blurb, location and role in `<summary>`.
-- The text, facts, credit and images in the panel below it.
+- The main image in `<figure class="project-image">`. It shows as a strip in the list and in full when the project opens. Set `style="--ratio: 1600 / 1200"` on the figure to the image's width and height. To choose which part shows in the strip, add `style="object-position: 50% 80%"` to the `<img>` (left-right %, top-bottom %).
+- The title, location and role, and the one-line description. The description becomes the first line of the text when the project opens.
+- The text, facts and credit in `<div class="project-body">`.
+- The images in `<div class="project-gallery">`: three across by default; add `cols-2` or `cols-4` to the class for two or four.
 
 Gray hatched boxes (`<div class="ph">[...]</div>`) mark images still to add. Replace each with:
 
@@ -33,7 +35,7 @@ Gray hatched boxes (`<div class="ph">[...]</div>`) mark images still to add. Rep
 <a class="zoom" href="img/project/file.jpg"><img src="img/project/file.jpg" alt="What the image shows" loading="lazy"></a>
 ```
 
-Add `pano`, `wide` or `film` after `zoom` to make an image span both columns.
+The darkness of the background is `--bg-darken` at the top of `css/style.css` (0 = full color, 1 = black).
 
 ## Images and video
 

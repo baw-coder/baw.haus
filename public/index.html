@@ -28,7 +28,7 @@
   <header class="hero">
     <div class="hero-text">
       <h1 class="hero-name">Blake Austin Walter,&nbsp;AIA</h1>
-      <p class="hero-intro">Architect and filmmaker. Associate Principal at KPF in London, with 9+ years across architecture, computational design, BIM and digital delivery, generative AI and visual storytelling.</p>
+      <p>Architect and filmmaker. Associate Principal at KPF in London, with 9+ years across architecture, computational design, BIM and digital delivery, generative AI and visual storytelling.</p>
       <p class="hero-links">
         <a href="mailto:blake@baw.haus">blake@baw.haus</a>
         <a href="cv/blake-austin-walter-cv.pdf">CV (PDF)</a>
@@ -45,7 +45,7 @@
           <svg class="icon-play" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M6 3.8v10.4L14.5 9z" fill="currentColor"/></svg>
         </button>
       </div>
-      <figcaption>Selected film experiments from my Bartlett MArch thesis, exploring reflexive fictional worlds through architecture, animation and moving image.</figcaption>
+      <figcaption class="small">Selected film experiments from my Bartlett MArch thesis, exploring reflexive fictional worlds through architecture, animation and moving image.</figcaption>
     </figure>
   </header>
 
@@ -53,8 +53,8 @@
 
     <!-- ====================================================================
          BLOCK: work list
-         Each project below is one <details> block. To reorder, cut and paste
-         whole blocks. data-tags sets which filter shows it: architecture, film.
+         Each project is one <article> block. To reorder, cut and paste whole
+         blocks. data-tags sets which filter shows it: architecture, film.
          ==================================================================== -->
     <section class="work" id="work" aria-labelledby="work-heading">
       <div class="section-head">
@@ -69,448 +69,258 @@
       <div class="projects">
 
         <!-- BLOCK: project | One North Quay -->
-        <details class="project" id="one-north-quay" data-tags="architecture">
-          <summary>
-            <img class="thumb" src="img/one-north-quay/one-north-quay-street.jpg" alt="" loading="lazy">
-            <span class="project-head">
-              <span class="project-title-row"><span class="project-title">One North Quay</span><span class="plus plus-mobile" aria-hidden="true"></span></span>
-              <span class="project-blurb">Europe's tallest purpose-built commercial lab building. I led the facade package and the BIM team.</span>
-            </span>
-            <span class="project-meta"><span>London</span><span>Facade lead · BIM lead</span></span>
-            <span class="plus plus-desktop" aria-hidden="true"></span>
-          </summary>
-          <div class="project-body">
-            <div class="project-cols">
-              <div class="project-text">
-                <p>A 23-story, 823,000 sq ft life-sciences tower at Canary Wharf. After early lab feasibility studies and test fits, I led the roughly 120-sheet terracotta curtain-wall package through RIBA Stage 4 and into construction support, coordinating facade engineers, manufacturers and cost consultants.</p>
-                <p>As BIM lead for a team of about ten, I coordinated 10–15 consultant models with clash detection in Revizto and built the curved, faceted and adaptive panel families. I also designed the public realm and landscape, and worked with glazing artists on the facade's color gradient.</p>
-                <dl class="facts">
-                  <dt>Client</dt><dd>Canary Wharf Group and Kadans Science Partner</dd>
-                  <dt>Status</dt><dd>Under construction, completing 2027</dd>
-                  <dt>Recognition</dt><dd>MIPIM Awards 2024 finalist; Digital Construction Awards 2026 finalist</dd>
-                </dl>
-                <p class="credit">Image: Kiasm / KPF, with modeling and Photoshop work by me.</p>
-              </div>
-              <div class="project-media">
-                <a class="zoom pano" href="img/one-north-quay/one-north-quay-street.jpg"><img src="img/one-north-quay/one-north-quay-street.jpg" alt="One North Quay at street level at dusk" loading="lazy"></a>
-                <div class="ph">[Facade detail]</div>
-                <div class="ph">[Public realm]</div>
-              </div>
-            </div>
-            <button type="button" class="close">Close ↑</button>
+        <article class="project" id="one-north-quay" data-tags="architecture">
+          <figure class="project-image" style="--ratio: 722 / 656">
+            <a class="zoom" href="img/one-north-quay/one-north-quay-street-dusk.jpg"><img src="img/one-north-quay/one-north-quay-street-dusk.jpg" alt="One North Quay from the street at dusk" style="object-position: 50% 80%"></a>
+          </figure>
+          <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">One North Quay</button></h3>
+          <p class="project-meta"><span>London</span><span>Facade lead · BIM lead</span></p>
+          <p class="project-blurb">Europe's tallest purpose-built commercial lab building. I led the facade package and the BIM team.</p>
+          <span class="plus" aria-hidden="true"></span>
+          <div class="project-body" hidden>
+            <p>A 23-story, 823,000 sq ft life-sciences tower at Canary Wharf. After early lab feasibility studies and test fits, I took the roughly 120-sheet terracotta curtain-wall package through RIBA Stage 4 and into construction support, coordinating facade engineers, manufacturers and cost consultants.</p>
+            <p>As BIM lead for a team of about ten, I coordinated 10–15 consultant models with clash detection in Revizto and built the curved, faceted and adaptive panel families. I also designed the public realm and landscape, and worked with glazing artists on the facade's color gradient.</p>
+            <dl class="facts">
+              <dt>Client</dt><dd>Canary Wharf Group and Kadans Science Partner</dd>
+              <dt>Status</dt><dd>Under construction, completing 2027</dd>
+              <dt>Recognition</dt><dd>MIPIM Awards 2024 finalist; Digital Construction Awards 2026 finalist</dd>
+            </dl>
+            <p class="small">Image: Kiasm / KPF, with modeling and Photoshop work by me.</p>
           </div>
-        </details>
+          <div class="project-gallery" hidden>
+            <div class="ph">[Facade detail]</div>
+            <div class="ph">[Public realm]</div>
+            <div class="ph">[Massing studies]</div>
+          </div>
+          <button type="button" class="close" hidden>Close</button>
+        </article>
 
         <!-- BLOCK: project | Changi Airport Terminal 5 -->
-        <details class="project" id="changi-terminal-5" data-tags="architecture">
-          <summary>
-            <img class="thumb" src="img/changi-t5/changi-t5-aerial.jpg" alt="" loading="lazy">
-            <span class="project-head">
-              <span class="project-title-row"><span class="project-title">Changi Airport Terminal 5</span><span class="plus plus-mobile" aria-hidden="true"></span></span>
-              <span class="project-blurb">A terminal for 50 million passengers a year, designed with Heatherwick Studio. I worked on the roof and passenger flows.</span>
-            </span>
-            <span class="project-meta"><span>Singapore</span><span>Roof · passenger flows</span></span>
-            <span class="plus plus-desktop" aria-hidden="true"></span>
-          </summary>
-          <div class="project-body">
-            <div class="project-cols">
-              <div class="project-text">
-                <p>KPF and Heatherwick Studio's competition-winning design for Changi's fifth terminal, conceived as an extension of the city rather than just a machine for moving people.</p>
-                <p>I worked on passenger flows and the roof. Its geometry came from hand-placed control points and Grasshopper scripts for structure, glazing panels and drainage, all inside a structural grid that fixed where peaks and valleys could fall. In 2018 I also tested early machine-learning approaches to the roof; they fell short, and the design still rested on judgment across structure, drainage and operations.</p>
-                <dl class="facts">
-                  <dt>Status</dt><dd>Under construction since May 2025</dd>
-                  <dt>Capacity</dt><dd>About 50 million passengers a year</dd>
-                  <dt>Design</dt><dd>KPF and Heatherwick Studio, with Architects 61</dd>
-                </dl>
-                <p class="credit">Image: [credit].</p>
-              </div>
-              <div class="project-media">
-                <a class="zoom pano" href="img/changi-t5/changi-t5-aerial.jpg"><img src="img/changi-t5/changi-t5-aerial.jpg" alt="Aerial view of the Terminal 5 roof and airfield at sunset" loading="lazy"></a>
-                <div class="ph">[Roof geometry study]</div>
-                <div class="ph">[Interior]</div>
-              </div>
-            </div>
-            <button type="button" class="close">Close ↑</button>
+        <article class="project" id="changi-terminal-5" data-tags="architecture">
+          <figure class="project-image" style="--ratio: 516 / 137">
+            <a class="zoom" href="img/changi-t5/changi-t5-aerial.jpg"><img src="img/changi-t5/changi-t5-aerial.jpg" alt="Aerial view of the Terminal 5 roof and airfield at sunset"></a>
+          </figure>
+          <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">Changi Airport Terminal 5</button></h3>
+          <p class="project-meta"><span>Singapore</span><span>Roof · passenger flows</span></p>
+          <p class="project-blurb">A terminal for 50 million passengers a year, designed with Heatherwick Studio. I worked on the roof and passenger flows.</p>
+          <span class="plus" aria-hidden="true"></span>
+          <div class="project-body" hidden>
+            <p>The competition-winning design for Changi's fifth terminal treats it as an extension of the city rather than just a machine for moving people.</p>
+            <p>The roof's geometry came from hand-placed control points and Grasshopper scripts for structure, glazing panels and drainage, all inside a structural grid that fixed where peaks and valleys could fall. In 2018 I also tested early machine-learning approaches to the roof; they fell short, and the design still rested on judgment across structure, drainage and operations.</p>
+            <dl class="facts">
+              <dt>Status</dt><dd>Under construction since May 2025</dd>
+              <dt>Capacity</dt><dd>About 50 million passengers a year</dd>
+              <dt>Design</dt><dd>KPF and Heatherwick Studio, with Architects 61</dd>
+            </dl>
+            <p class="small">Image: [credit].</p>
           </div>
-        </details>
+          <div class="project-gallery" hidden>
+            <div class="ph">[Roof geometry study]</div>
+            <div class="ph">[Interior]</div>
+            <div class="ph">[Section]</div>
+          </div>
+          <button type="button" class="close" hidden>Close</button>
+        </article>
 
         <!-- BLOCK: project | 99 City Road -->
-        <details class="project" id="99-city-road" data-tags="architecture">
-          <summary>
-            <img class="thumb" src="img/99-city-road/99-city-road-entrance.jpg" alt="" loading="lazy">
-            <span class="project-head">
-              <span class="project-title-row"><span class="project-title">99 City Road</span><span class="plus plus-mobile" aria-hidden="true"></span></span>
-              <span class="project-blurb">A 36-story office tower at Old Street. I led the 250-sheet architectural and facade package.</span>
-            </span>
-            <span class="project-meta"><span>London</span><span>Facade lead</span></span>
-            <span class="plus plus-desktop" aria-hidden="true"></span>
-          </summary>
-          <div class="project-body">
-            <div class="project-cols">
-              <div class="project-text">
-                <p>A 475,000 sq ft office tower at the junction of Old Street and the City of London. I led the roughly 250-sheet architectural and facade package through RIBA Stage 4, kept recurring client changes under control through addenda and revision cycles, and handled RFIs, shop drawings, mockups and factory visits.</p>
-                <p>When annotations drifted across the set, I had an LLM write a Revit script to fix them in bulk, tested it in the live model, then ran it across the package.</p>
-                <dl class="facts">
-                  <dt>Client</dt><dd>Endurance Land</dd>
-                  <dt>Status</dt><dd>Main construction from 2026; completion targeted for 2030</dd>
-                  <dt>Scale</dt><dd>36 stories, 475,000 sq ft</dd>
-                </dl>
-                <p class="credit">Image: [credit].</p>
-              </div>
-              <div class="project-media">
-                <a class="zoom pano" href="img/99-city-road/99-city-road-entrance.jpg"><img src="img/99-city-road/99-city-road-entrance.jpg" alt="99 City Road entrance at night with green-lit columns" loading="lazy"></a>
-                <div class="ph">[Tower view]</div>
-                <div class="ph">[Facade detail]</div>
-              </div>
-            </div>
-            <button type="button" class="close">Close ↑</button>
+        <article class="project" id="99-city-road" data-tags="architecture">
+          <figure class="project-image" style="--ratio: 516 / 137">
+            <a class="zoom" href="img/99-city-road/99-city-road-entrance.jpg"><img src="img/99-city-road/99-city-road-entrance.jpg" alt="99 City Road entrance at night with green-lit columns"></a>
+          </figure>
+          <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">99 City Road</button></h3>
+          <p class="project-meta"><span>London</span><span>Facade lead</span></p>
+          <p class="project-blurb">A 36-story office tower at Old Street. I led the 250-sheet architectural and facade package.</p>
+          <span class="plus" aria-hidden="true"></span>
+          <div class="project-body" hidden>
+            <p>The 475,000 sq ft tower sits at the junction of Old Street and the City of London. I took the package through RIBA Stage 4, kept recurring client changes under control through addenda and revision cycles, and handled RFIs, shop drawings, mockups and factory visits.</p>
+            <p>When annotations drifted across the set, I had an LLM write a Revit script to fix them in bulk, tested it in the live model, then ran it across the package.</p>
+            <dl class="facts">
+              <dt>Client</dt><dd>Endurance Land</dd>
+              <dt>Status</dt><dd>Main construction from 2026; completion targeted for 2030</dd>
+              <dt>Scale</dt><dd>36 stories, 475,000 sq ft</dd>
+            </dl>
+            <p class="small">Image: [credit].</p>
           </div>
-        </details>
+          <div class="project-gallery" hidden>
+            <div class="ph">[Tower view]</div>
+            <div class="ph">[Facade detail]</div>
+            <div class="ph">[Section]</div>
+          </div>
+          <button type="button" class="close" hidden>Close</button>
+        </article>
 
         <!-- BLOCK: project | A Network of Lines That Intersect -->
-        <details class="project" id="a-network-of-lines" data-tags="film">
-          <summary>
-            <img class="thumb" src="img/network-of-lines/network-of-lines-still-01.jpg" alt="" loading="lazy">
-            <span class="project-head">
-              <span class="project-title-row"><span class="project-title">A Network of Lines That Intersect</span><span class="plus plus-mobile" aria-hidden="true"></span></span>
-              <span class="project-blurb">My MArch thesis: a 10-minute Unreal Engine film about a world that knows it was built.</span>
-            </span>
-            <span class="project-meta"><span>The Bartlett, UCL</span><span>Writer · director · animator</span></span>
-            <span class="plus plus-desktop" aria-hidden="true"></span>
-          </summary>
-          <div class="project-body">
-            <div class="project-cols">
-              <div class="project-text">
-                <p>A world of architectural sets turned inside out and partly inhabited, recombining across an expanded East London site until their juxtapositions generate a fiction of their own. Drawing on Charlie Kaufman and Jorge Luis Borges, the film heightens diegetic disruptions and artificiality to build a subversive narrative, then turns to intimate moments of design: objects that connect you to real materials and to other worlds.</p>
-                <p>I designed and modeled the world, wrote the script and voiceover, planned the camera, made the sound and edited the film. A 10,000-word written thesis on reflexive worldbuilding accompanies it.</p>
-                <dl class="facts">
-                  <dt>Year</dt><dd>2020</dd>
-                  <dt>Length</dt><dd>10 minutes</dd>
-                  <dt>Made with</dt><dd>3ds Max, Unreal Engine, ZBrush, Houdini, Premiere Pro, After Effects</dd>
-                </dl>
-              </div>
-              <div class="project-media">
-                <div class="film ph"><span class="play-ring"><svg width="20" height="20" viewBox="0 0 18 18" aria-hidden="true"><path d="M6 3.8v10.4L14.5 9z" fill="currentColor"/></svg></span>[Full film, with sound]</div>
-                <a class="zoom pano" href="img/network-of-lines/network-of-lines-still-01.jpg"><img src="img/network-of-lines/network-of-lines-still-01.jpg" alt="Film still: a collage of East London facades" loading="lazy"></a>
-                <div class="still ph">[Film still]</div>
-                <div class="still ph">[Film still]</div>
-              </div>
-            </div>
-            <button type="button" class="close">Close ↑</button>
+        <article class="project" id="a-network-of-lines" data-tags="film">
+          <figure class="project-image" style="--ratio: 723 / 407">
+            <a class="zoom" href="img/network-of-lines/network-of-lines-street-set.jpg"><img src="img/network-of-lines/network-of-lines-street-set.jpg" alt="Film still: a street of European facades built as a set inside a hall"></a>
+          </figure>
+          <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">A Network of Lines That Intersect</button></h3>
+          <p class="project-meta"><span>The Bartlett, UCL</span><span>Writer · director · animator</span></p>
+          <p class="project-blurb">My MArch thesis: a 10-minute Unreal Engine film about a world that knows it was built.</p>
+          <span class="plus" aria-hidden="true"></span>
+          <div class="project-body" hidden>
+            <p>A world of architectural sets turned inside out and partly inhabited, recombining across an expanded East London site until their juxtapositions generate a fiction of their own. Drawing on Charlie Kaufman and Jorge Luis Borges, the film heightens diegetic disruptions and artificiality to build a subversive narrative, then turns to intimate moments of design: objects that connect you to real materials and to other worlds.</p>
+            <p>I designed and modeled the world, wrote the script and voiceover, planned the camera, made the sound and edited the film. A 10,000-word written thesis on reflexive worldbuilding accompanies it.</p>
+            <dl class="facts">
+              <dt>Year</dt><dd>2020</dd>
+              <dt>Length</dt><dd>10 minutes</dd>
+              <dt>Made with</dt><dd>3ds Max, Unreal Engine, ZBrush, Houdini, Premiere Pro, After Effects</dd>
+            </dl>
           </div>
-        </details>
+          <div class="project-gallery cols-4" hidden>
+            <a class="zoom" href="img/network-of-lines/network-of-lines-still-01.jpg"><img src="img/network-of-lines/network-of-lines-still-01.jpg" alt="Film still: a table of photographs inside the set" loading="lazy"></a>
+            <a class="zoom" href="img/network-of-lines/network-of-lines-still-02.jpg"><img src="img/network-of-lines/network-of-lines-still-02.jpg" alt="Film still: a figure on a stair landing" loading="lazy"></a>
+            <a class="zoom" href="img/network-of-lines/network-of-lines-still-03.jpg"><img src="img/network-of-lines/network-of-lines-still-03.jpg" alt="Film still: a pale shell structure in a dark street" loading="lazy"></a>
+            <a class="zoom" href="img/network-of-lines/network-of-lines-still-04.jpg"><img src="img/network-of-lines/network-of-lines-still-04.jpg" alt="Film still: a figure facing an ornate doorway" loading="lazy"></a>
+            <a class="zoom" href="img/network-of-lines/network-of-lines-still-05.jpg"><img src="img/network-of-lines/network-of-lines-still-05.jpg" alt="Film still: a copper object in close-up" loading="lazy"></a>
+            <a class="zoom" href="img/network-of-lines/network-of-lines-still-06.jpg"><img src="img/network-of-lines/network-of-lines-still-06.jpg" alt="Film still: a figure at a window over a street" loading="lazy"></a>
+            <a class="zoom" href="img/network-of-lines/network-of-lines-still-07.jpg"><img src="img/network-of-lines/network-of-lines-still-07.jpg" alt="Film still: a hand on a timber handrail" loading="lazy"></a>
+            <a class="zoom" href="img/network-of-lines/network-of-lines-still-08.jpg"><img src="img/network-of-lines/network-of-lines-still-08.jpg" alt="Film still: a stair with a timber handrail" loading="lazy"></a>
+          </div>
+          <button type="button" class="close" hidden>Close</button>
+        </article>
 
         <!-- BLOCK: project | The Bermondsey Project -->
-        <details class="project" id="the-bermondsey-project" data-tags="architecture">
-          <summary>
-            <span class="thumb ph">[Image]</span>
-            <span class="project-head">
-              <span class="project-title-row"><span class="project-title">The Bermondsey Project</span><span class="plus plus-mobile" aria-hidden="true"></span></span>
-              <span class="project-blurb">A 1,500-home masterplan for Grosvenor on a former factory site. I was BIM lead for a team of eight.</span>
-            </span>
-            <span class="project-meta"><span>London</span><span>BIM lead</span></span>
-            <span class="plus plus-desktop" aria-hidden="true"></span>
-          </summary>
-          <div class="project-body">
-            <div class="project-cols">
-              <div class="project-text">
-                <p>A masterplan on a Bermondsey factory site closed for 30 years, with more than 1,500 homes, 35% of them affordable.</p>
-                <p>As BIM lead for a team of eight-plus, I co-wrote the BIM execution plan and set the worksharing, model and documentation standards for a development meant to become a digital twin. I built families, ran model audits, coordinated 10–15 consultant models and trained the team.</p>
-                <dl class="facts">
-                  <dt>Client</dt><dd>Grosvenor Britain &amp; Ireland</dd>
-                  <dt>Recognition</dt><dd>MIPIM Awards 2021, Best Futura Mega Project; Planning Awards shortlist</dd>
-                </dl>
-                <p class="credit">Image: [credit].</p>
-              </div>
-              <div class="project-media">
-                <div class="wide ph">[Masterplan view]</div>
-                <div class="ph">[Street view]</div>
-                <div class="ph">[Model view]</div>
-              </div>
-            </div>
-            <button type="button" class="close">Close ↑</button>
+        <article class="project" id="the-bermondsey-project" data-tags="architecture">
+          <figure class="project-image" style="--ratio: 3 / 2">
+            <span class="ph">[Image]</span>
+          </figure>
+          <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">The Bermondsey Project</button></h3>
+          <p class="project-meta"><span>London</span><span>BIM lead</span></p>
+          <p class="project-blurb">A 1,500-home masterplan for Grosvenor on a former factory site. I was BIM lead for a team of eight.</p>
+          <span class="plus" aria-hidden="true"></span>
+          <div class="project-body" hidden>
+            <p>The site had been closed for 30 years; 35% of the new homes are affordable.</p>
+            <p>I co-wrote the BIM execution plan and set the worksharing, model and documentation standards for a development meant to become a digital twin. I built families, ran model audits, coordinated 10–15 consultant models and trained the team.</p>
+            <dl class="facts">
+              <dt>Client</dt><dd>Grosvenor Britain &amp; Ireland</dd>
+              <dt>Recognition</dt><dd>MIPIM Awards 2021, Best Futura Mega Project; Planning Awards shortlist</dd>
+            </dl>
+            <p class="small">Image: [credit].</p>
           </div>
-        </details>
+          <div class="project-gallery" hidden>
+            <div class="ph">[Masterplan view]</div>
+            <div class="ph">[Street view]</div>
+            <div class="ph">[Model view]</div>
+          </div>
+          <button type="button" class="close" hidden>Close</button>
+        </article>
 
         <!-- BLOCK: project | Platform 16 -->
-        <details class="project" id="platform-16" data-tags="architecture">
-          <summary>
-            <img class="thumb" src="img/platform-16/platform-16-plaza.jpg" alt="" loading="lazy">
-            <span class="project-head">
-              <span class="project-title-row"><span class="project-title">Platform 16</span><span class="plus plus-mobile" aria-hidden="true"></span></span>
-              <span class="project-blurb">A million-square-foot office campus shaped by airport height limits. I developed the massing and facades.</span>
-            </span>
-            <span class="project-meta"><span>San Jose, California</span><span>Massing · facade design</span></span>
-            <span class="plus plus-desktop" aria-hidden="true"></span>
-          </summary>
-          <div class="project-body">
-            <div class="project-cols">
-              <div class="project-text">
-                <p>Three office buildings at 440 West Julian Street in downtown San Jose. Two constraints drove the design: height limits from nearby Mineta San José Airport, and very long facades whose scale had to be broken down.</p>
-                <p>Working with lead designer Richard Kim from feasibility through design development, I developed the massing and facade design, coordinated facade engineers and manufacturers on the panels, and prepared code analyses, egress drawings and parts of the construction documents.</p>
-                <dl class="facts">
-                  <dt>Scale</dt><dd>Three buildings, more than 1 million sq ft</dd>
-                  <dt>Stages</dt><dd>Feasibility through design development</dd>
-                </dl>
-                <p class="credit">All images are my own modeling and visualization.</p>
-              </div>
-              <div class="project-media">
-                <a class="zoom pano" href="img/platform-16/platform-16-plaza.jpg"><img src="img/platform-16/platform-16-plaza.jpg" alt="Platform 16 entrance plaza with a mirrored sculpture" loading="lazy"></a>
-                <div class="ph">[Massing study]</div>
-                <div class="ph">[Facade module]</div>
-              </div>
-            </div>
-            <button type="button" class="close">Close ↑</button>
+        <article class="project" id="platform-16" data-tags="architecture">
+          <figure class="project-image" style="--ratio: 723 / 362">
+            <a class="zoom" href="img/platform-16/platform-16-plaza.jpg"><img src="img/platform-16/platform-16-plaza.jpg" alt="Platform 16 entrance plaza with a mirrored sculpture"></a>
+          </figure>
+          <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">Platform 16</button></h3>
+          <p class="project-meta"><span>San Jose, California</span><span>Massing · facade design</span></p>
+          <p class="project-blurb">A million-square-foot office campus shaped by airport height limits. I developed the massing and facades.</p>
+          <span class="plus" aria-hidden="true"></span>
+          <div class="project-body" hidden>
+            <p>Three office buildings at 440 West Julian Street in downtown San Jose. Two constraints drove the design: height limits from nearby Mineta San José Airport, and very long facades whose scale had to be broken down.</p>
+            <p>Working with lead designer Richard Kim from feasibility through design development, I developed the massing and facade design, coordinated facade engineers and manufacturers on the panels, and prepared code analyses, egress drawings and parts of the construction documents.</p>
+            <dl class="facts">
+              <dt>Scale</dt><dd>Three buildings, more than 1 million sq ft</dd>
+              <dt>Stages</dt><dd>Feasibility through design development</dd>
+            </dl>
+            <p class="small">All images are my own modeling and visualization.</p>
           </div>
-        </details>
+          <div class="project-gallery" hidden>
+            <div class="ph">[Courtyard]</div>
+            <div class="ph">[Facade module]</div>
+            <div class="ph">[Night view]</div>
+          </div>
+          <button type="button" class="close" hidden>Close</button>
+        </article>
 
         <!-- BLOCK: project | Croydon Town Center -->
-        <details class="project" id="croydon" data-tags="architecture">
-          <summary>
-            <span class="thumb ph">[Image]</span>
-            <span class="project-head">
-              <span class="project-title-row"><span class="project-title">Croydon Town Center</span><span class="plus plus-mobile" aria-hidden="true"></span></span>
-              <span class="project-blurb">Two shopping centers remade as a mixed-use town center. I led parts of the urban design and directed the visuals.</span>
-            </span>
-            <span class="project-meta"><span>London</span><span>Urban design · visualization</span></span>
-            <span class="plus plus-desktop" aria-hidden="true"></span>
-          </summary>
-          <div class="project-body">
-            <div class="project-cols">
-              <div class="project-text">
-                <p>A competition-winning proposal to turn the Whitgift Centre and Centrale into mixed-use urban blocks, adding density along streets and spaces shaped by the area's character. Reusing existing site elements cut the carbon footprint and kept some of the neighborhood's identity.</p>
-                <p>I led parts of the urban design, designed building facades and public spaces, tested the massing through view analysis and directed the visualization.</p>
-                <dl class="facts">
-                  <dt>Status</dt><dd>Competition win</dd>
-                </dl>
-                <p class="credit">Rendering: ATchain, with modeling and direction by me.</p>
-              </div>
-              <div class="project-media">
-                <div class="wide ph">[Aerial rendering]</div>
-                <div class="ph">[Street rendering]</div>
-                <div class="ph">[View analysis]</div>
-              </div>
-            </div>
-            <button type="button" class="close">Close ↑</button>
+        <article class="project" id="croydon" data-tags="architecture">
+          <figure class="project-image" style="--ratio: 3 / 2">
+            <span class="ph">[Image]</span>
+          </figure>
+          <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">Croydon Town Center</button></h3>
+          <p class="project-meta"><span>London</span><span>Urban design · visualization</span></p>
+          <p class="project-blurb">Two shopping centers remade as a mixed-use town center. I led parts of the urban design and directed the visuals.</p>
+          <span class="plus" aria-hidden="true"></span>
+          <div class="project-body" hidden>
+            <p>A competition-winning proposal to turn the Whitgift Centre and Centrale into mixed-use urban blocks, adding density along streets and spaces shaped by the area's character. Reusing existing site elements cut the carbon footprint and kept some of the neighborhood's identity.</p>
+            <p>I also designed building facades and public spaces and tested the massing through view analysis.</p>
+            <dl class="facts">
+              <dt>Status</dt><dd>Competition win</dd>
+            </dl>
+            <p class="small">Rendering: ATchain, with modeling and direction by me.</p>
           </div>
-        </details>
+          <div class="project-gallery" hidden>
+            <div class="ph">[View analysis]</div>
+            <div class="ph">[Street rendering]</div>
+            <div class="ph">[Public space]</div>
+          </div>
+          <button type="button" class="close" hidden>Close</button>
+        </article>
 
         <!-- BLOCK: project | Museum of Museums -->
-        <details class="project" id="museum-of-museums" data-tags="architecture">
-          <summary>
-            <img class="thumb invert" src="img/museum-of-museums/museum-of-museums-section.jpg" alt="" loading="lazy">
-            <span class="project-head">
-              <span class="project-title-row"><span class="project-title">Museum of Museums</span><span class="plus plus-mobile" aria-hidden="true"></span></span>
-              <span class="project-blurb">A museum that absorbs other museums, drawn from the recursive ornament of Bavarian Rococo churches.</span>
-            </span>
-            <span class="project-meta"><span>Deptford, London</span><span>The Bartlett, UCL</span></span>
-            <span class="plus plus-desktop" aria-hidden="true"></span>
-          </summary>
-          <div class="project-body">
-            <div class="project-cols">
-              <div class="project-text">
-                <p>A proposal for a disused site in Deptford. Taking its cue from the recursive ornament of Bavarian Rococo churches, the building's forms curve back on themselves to absorb pieces of other buildings, above all other museums.</p>
-                <p>The drawings are 3D collages built from 2D elements and 3D-printed ones.</p>
-              </div>
-              <div class="project-media">
-                <a class="zoom pano" href="img/museum-of-museums/museum-of-museums-section.jpg"><img class="invert-img" src="img/museum-of-museums/museum-of-museums-section.jpg" alt="Long section of the museum, its forms curling around fragments of other buildings" loading="lazy"></a>
-                <div class="ph">[Collage detail]</div>
-                <div class="ph">[3D-printed elements]</div>
-              </div>
-            </div>
-            <button type="button" class="close">Close ↑</button>
+        <article class="project" id="museum-of-museums" data-tags="architecture">
+          <figure class="project-image" style="--ratio: 723 / 407">
+            <a class="zoom" href="img/museum-of-museums/museum-of-museums-render.jpg"><img src="img/museum-of-museums/museum-of-museums-render.jpg" alt="The museum's curling form beside a railway viaduct" style="object-position: 50% 40%"></a>
+          </figure>
+          <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">Museum of Museums</button></h3>
+          <p class="project-meta"><span>Deptford, London</span><span>The Bartlett, UCL</span></p>
+          <p class="project-blurb">A museum that absorbs other museums, drawn from the recursive ornament of Bavarian Rococo churches.</p>
+          <span class="plus" aria-hidden="true"></span>
+          <div class="project-body" hidden>
+            <p>A proposal for a disused site in Deptford. The building's forms curve back on themselves to absorb pieces of other buildings, above all other museums.</p>
+            <p>The drawings are 3D collages built from 2D elements and 3D-printed ones.</p>
           </div>
-        </details>
-
-        <!-- BLOCK: project | Capitol Crossing -->
-        <details class="project" id="capitol-crossing" data-tags="architecture">
-          <summary>
-            <span class="thumb ph">[Image]</span>
-            <span class="project-head">
-              <span class="project-title-row"><span class="project-title">Capitol Crossing</span><span class="plus plus-mobile" aria-hidden="true"></span></span>
-              <span class="project-blurb">A mixed-use development built over a downtown freeway. I developed facade design through detailed design.</span>
-            </span>
-            <span class="project-meta"><span>Washington, DC</span><span>Facade design</span></span>
-            <span class="plus plus-desktop" aria-hidden="true"></span>
-          </summary>
-          <div class="project-body">
-            <div class="project-cols">
-              <div class="project-text">
-                <p>A mixed-use development that reconnects downtown Washington by building over the I-395 freeway.</p>
-                <p>Over six months I developed facade design and drawings and worked with facade engineers and manufacturers through detailed design, within U.S. code, accessibility, fire and facade-performance requirements.</p>
-                <p class="credit">Image: [credit].</p>
-              </div>
-              <div class="project-media">
-                <div class="wide ph">[Facade view]</div>
-              </div>
-            </div>
-            <button type="button" class="close">Close ↑</button>
+          <div class="project-gallery" hidden>
+            <a class="zoom" href="img/museum-of-museums/museum-of-museums-01.jpg"><img src="img/museum-of-museums/museum-of-museums-01.jpg" alt="Model of curling silver forms on a timber base" loading="lazy"></a>
+            <a class="zoom" href="img/museum-of-museums/museum-of-museums-02.jpg"><img src="img/museum-of-museums/museum-of-museums-02.jpg" alt="Silver cast fragment in red earth" loading="lazy"></a>
+            <a class="zoom" href="img/museum-of-museums/museum-of-museums-03.jpg"><img src="img/museum-of-museums/museum-of-museums-03.jpg" alt="Silver cast fragment held in a hand" loading="lazy"></a>
+            <a class="zoom" href="img/museum-of-museums/museum-of-museums-04.jpg"><img src="img/museum-of-museums/museum-of-museums-04.jpg" alt="Collage of the interior in black and white" loading="lazy"></a>
+            <a class="zoom" href="img/museum-of-museums/museum-of-museums-05.jpg"><img src="img/museum-of-museums/museum-of-museums-05.jpg" alt="Long section through the museum" loading="lazy"></a>
+            <a class="zoom" href="img/museum-of-museums/museum-of-museums-06.jpg"><img src="img/museum-of-museums/museum-of-museums-06.jpg" alt="Aerial collage of the museum in Deptford" loading="lazy"></a>
           </div>
-        </details>
-
-        <!-- BLOCK: project | Generative film (KPF competition) -->
-        <details class="project" id="generative-film" data-tags="film">
-          <summary>
-            <span class="thumb ph">[Film still]</span>
-            <span class="project-head">
-              <span class="project-title-row"><span class="project-title">[Film title]</span><span class="plus plus-mobile" aria-hidden="true"></span></span>
-              <span class="project-blurb">A generative-AI film that placed second in KPF's internal film competition.</span>
-            </span>
-            <span class="project-meta"><span>London</span><span>Generative film</span></span>
-            <span class="plus plus-desktop" aria-hidden="true"></span>
-          </summary>
-          <div class="project-body">
-            <div class="project-cols">
-              <div class="project-text">
-                <p>[One or two lines on what the film is about.]</p>
-                <dl class="facts">
-                  <dt>Recognition</dt><dd>Second place, KPF internal film competition</dd>
-                  <dt>Made with</dt><dd>[Tools]</dd>
-                </dl>
-              </div>
-              <div class="project-media">
-                <div class="film ph"><span class="play-ring"><svg width="20" height="20" viewBox="0 0 18 18" aria-hidden="true"><path d="M6 3.8v10.4L14.5 9z" fill="currentColor"/></svg></span>[Film]</div>
-              </div>
-            </div>
-            <button type="button" class="close">Close ↑</button>
-          </div>
-        </details>
-
-        <!-- BLOCK: project | Central European University -->
-        <details class="project" id="central-european-university" data-tags="architecture">
-          <summary>
-            <span class="thumb ph">[Image]</span>
-            <span class="project-head">
-              <span class="project-title-row"><span class="project-title">Central European University</span><span class="plus plus-mobile" aria-hidden="true"></span></span>
-              <span class="project-blurb">A 143-hectare historic hospital campus reimagined as a new home for a university.</span>
-            </span>
-            <span class="project-meta"><span>Vienna</span><span>Programming · positioning</span></span>
-            <span class="plus plus-desktop" aria-hidden="true"></span>
-          </summary>
-          <div class="project-body">
-            <div class="project-cols">
-              <div class="project-text">
-                <p>KPF's competition-winning proposal to convert the Otto Wagner Spital, a 143-hectare campus of landmark-protected pavilions and parkland, into Central European University's new campus.</p>
-                <p>I worked on programming and positioning, translating the university's brief and the campus-scale constraints into a development and design strategy.</p>
-                <dl class="facts">
-                  <dt>Status</dt><dd>Competition win</dd>
-                </dl>
-                <p class="credit">Image: [credit].</p>
-              </div>
-              <div class="project-media">
-                <div class="wide ph">[Campus view]</div>
-              </div>
-            </div>
-            <button type="button" class="close">Close ↑</button>
-          </div>
-        </details>
+          <button type="button" class="close" hidden>Close</button>
+        </article>
 
         <!-- BLOCK: project | 5M -->
-        <details class="project" id="5m" data-tags="architecture">
-          <summary>
-            <span class="thumb ph">[Image]</span>
-            <span class="project-head">
-              <span class="project-title-row"><span class="project-title">5M</span><span class="plus plus-mobile" aria-hidden="true"></span></span>
-              <span class="project-blurb">A new mixed-use district in SoMa. I developed facade concepts through design development.</span>
-            </span>
-            <span class="project-meta"><span>San Francisco</span><span>Facade design</span></span>
-            <span class="plus plus-desktop" aria-hidden="true"></span>
-          </summary>
-          <div class="project-body">
-            <div class="project-cols">
-              <div class="project-text">
-                <p>Facade concept and design development for KPF's work at 5M, a mixed-use district in San Francisco's SoMa.</p>
-                <p>Over six months I coordinated with structural and facade consultants and prepared code analyses, egress and life-safety drawings and parts of the construction documents under California requirements, including Title 24.</p>
-                <p class="credit">Image: [credit].</p>
-              </div>
-              <div class="project-media">
-                <div class="wide ph">[Facade view]</div>
-              </div>
-            </div>
-            <button type="button" class="close">Close ↑</button>
+        <article class="project" id="5m" data-tags="architecture">
+          <figure class="project-image" style="--ratio: 3 / 2">
+            <span class="ph">[Image]</span>
+          </figure>
+          <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">5M</button></h3>
+          <p class="project-meta"><span>San Francisco</span><span>Facade design</span></p>
+          <p class="project-blurb">A new mixed-use district in SoMa. I developed facade concepts through design development.</p>
+          <span class="plus" aria-hidden="true"></span>
+          <div class="project-body" hidden>
+            <p>Facade concept and design development for KPF's work at 5M, a mixed-use district in San Francisco's SoMa.</p>
+            <p>Over six months I coordinated with structural and facade consultants and prepared code analyses, egress and life-safety drawings and parts of the construction documents under California requirements, including Title 24.</p>
+            <p class="small">Image: [credit].</p>
           </div>
-        </details>
-
-        <!-- BLOCK: project | absolute grey -->
-        <details class="project" id="absolute-grey" data-tags="film">
-          <summary>
-            <span class="thumb ph">[Film still]</span>
-            <span class="project-head">
-              <span class="project-title-row"><span class="project-title">absolute grey</span><span class="plus plus-mobile" aria-hidden="true"></span></span>
-              <span class="project-blurb">A 16-minute procedural film for Derek Piotr's experimental music, built in Houdini.</span>
-            </span>
-            <span class="project-meta"><span>With Derek Piotr</span><span>Animation · editing</span></span>
-            <span class="plus plus-desktop" aria-hidden="true"></span>
-          </summary>
-          <div class="project-body">
-            <div class="project-cols">
-              <div class="project-text">
-                <p>Visuals for Derek Piotr's absolute grey: procedurally generated forms that respond to experimental music. I developed the visual concept and procedural systems with Derek, then handled animation, camera, lighting, timing to the music, editing and compositing across all 16 minutes.</p>
-                <dl class="facts">
-                  <dt>Year</dt><dd>2016</dd>
-                  <dt>Made with</dt><dd>Houdini, After Effects, Premiere Pro</dd>
-                </dl>
-              </div>
-              <div class="project-media">
-                <div class="film ph"><span class="play-ring"><svg width="20" height="20" viewBox="0 0 18 18" aria-hidden="true"><path d="M6 3.8v10.4L14.5 9z" fill="currentColor"/></svg></span>[Excerpt]</div>
-              </div>
-            </div>
-            <button type="button" class="close">Close ↑</button>
+          <div class="project-gallery" hidden>
+            <div class="ph">[Facade view]</div>
+            <div class="ph">[Detail]</div>
+            <div class="ph">[Street view]</div>
           </div>
-        </details>
+          <button type="button" class="close" hidden>Close</button>
+        </article>
 
         <!-- BLOCK: project | EPCOT -->
-        <details class="project" id="epcot" data-tags="architecture">
-          <summary>
-            <span class="thumb ph">[Image]</span>
-            <span class="project-head">
-              <span class="project-title-row"><span class="project-title">EPCOT</span><span class="plus plus-mobile" aria-hidden="true"></span></span>
-              <span class="project-blurb">A community of tomorrow that transmits its residents' idyllic dreams to the people living below.</span>
-            </span>
-            <span class="project-meta"><span>Speculative project</span></span>
-            <span class="plus plus-desktop" aria-hidden="true"></span>
-          </summary>
-          <div class="project-body">
-            <div class="project-cols">
-              <div class="project-text">
-                <p>An experimental community built to help the imagination produce fictions. This Experimental Prototype Community of Tomorrow transmits the idyllic dreams of its users to those living below.</p>
-              </div>
-              <div class="project-media">
-                <div class="wide ph">[View from above]</div>
-                <div class="ph">[Second view]</div>
-                <div class="ph">[Process diagram]</div>
-              </div>
-            </div>
-            <button type="button" class="close">Close ↑</button>
+        <article class="project" id="epcot" data-tags="architecture">
+          <figure class="project-image" style="--ratio: 583 / 327">
+            <a class="zoom" href="img/epcot/epcot-landscape.jpg"><img src="img/epcot/epcot-landscape.jpg" alt="A glazed, cellular landscape under a cloudy sky"></a>
+          </figure>
+          <h3 class="project-title"><button type="button" class="project-toggle" aria-expanded="false">EPCOT</button></h3>
+          <p class="project-meta"><span>Speculative project</span></p>
+          <p class="project-blurb">A community of tomorrow that transmits its residents' idyllic dreams to the people living below.</p>
+          <span class="plus" aria-hidden="true"></span>
+          <div class="project-body" hidden>
+            <p>An Experimental Prototype Community of Tomorrow, built to help the imagination produce fictions.</p>
           </div>
-        </details>
-
-        <!-- BLOCK: project | The Overthrow -->
-        <details class="project" id="the-overthrow" data-tags="film">
-          <summary>
-            <span class="thumb ph">[Image]</span>
-            <span class="project-head">
-              <span class="project-title-row"><span class="project-title">The Overthrow</span><span class="plus plus-mobile" aria-hidden="true"></span></span>
-              <span class="project-blurb">Virtual environments for Laura Peterson's VR and web work.</span>
-            </span>
-            <span class="project-meta"><span>New York</span><span>3D environments · VR</span></span>
-            <span class="plus plus-desktop" aria-hidden="true"></span>
-          </summary>
-          <div class="project-body">
-            <div class="project-cols">
-              <div class="project-text">
-                <p>I modeled parts of the imagined environments for Laura Peterson's virtual-reality and web-based work associated with The Overthrow (holymta.info), then helped set up and run the VR portion of the show.</p>
-                <dl class="facts">
-                  <dt>Year</dt><dd>2016</dd>
-                </dl>
-              </div>
-              <div class="project-media">
-                <div class="wide ph">[VR environment]</div>
-              </div>
-            </div>
-            <button type="button" class="close">Close ↑</button>
+          <div class="project-gallery cols-2" hidden>
+            <a class="zoom" href="img/epcot/epcot-process-diagram.jpg"><img src="img/epcot/epcot-process-diagram.jpg" alt="Process diagram: simple shapes bent, twisted and stretched into the chosen form" loading="lazy"></a>
+            <a class="zoom" href="img/epcot/epcot-forms-in-clouds.jpg"><img src="img/epcot/epcot-forms-in-clouds.jpg" alt="White perforated forms floating in clouds" loading="lazy"></a>
           </div>
-        </details>
+          <button type="button" class="close" hidden>Close</button>
+        </article>
 
       </div>
     </section>
@@ -521,12 +331,12 @@
     <section class="about" id="about" aria-labelledby="about-heading">
       <div class="section-head">
         <h2 class="label" id="about-heading">About</h2>
-        <a class="cv-link" href="cv/blake-austin-walter-cv.pdf">Download CV (PDF)</a>
+        <a class="label" href="cv/blake-austin-walter-cv.pdf">Download CV (PDF)</a>
       </div>
       <div class="about-cols">
 
         <div class="about-col">
-          <h3>Experience</h3>
+          <h3 class="label">Experience</h3>
           <div class="entry">
             <p class="entry-title">Associate Principal</p>
             <p class="entry-sub">KPF · London · 2025–present</p>
@@ -541,7 +351,7 @@
         </div>
 
         <div class="about-col">
-          <h3>Education &amp; credentials</h3>
+          <h3 class="label">Education &amp; credentials</h3>
           <div class="entry"><p class="entry-title">MArch (RIBA Part 2)</p><p class="entry-sub">The Bartlett School of Architecture, UCL · 2020</p></div>
           <div class="entry"><p class="entry-title">BArch</p><p class="entry-sub">The University of Texas at Austin · 2015</p></div>
           <div class="entry"><p class="entry-title">BA, English</p><p class="entry-sub">The University of Texas at Austin · 2015 · Dean's List, University Honors</p></div>
@@ -550,7 +360,7 @@
         </div>
 
         <div class="about-col">
-          <h3>Tools</h3>
+          <h3 class="label">Tools</h3>
           <div class="entry"><p class="entry-title">Design and computation</p><p class="entry-sub">Rhino · Grasshopper · Revit · Rhino.Inside · Dynamo · pyRevit</p></div>
           <div class="entry"><p class="entry-title">BIM and delivery</p><p class="entry-sub">Revizto · Navisworks · ACC · Bluebeam · Ideate · AutoCAD</p></div>
           <div class="entry"><p class="entry-title">Film and visual</p><p class="entry-sub">Unreal Engine · Houdini · 3ds Max · Runway · xfigura · Premiere Pro · After Effects · Photoshop · Illustrator · InDesign</p></div>
@@ -575,7 +385,7 @@
 
   </main>
 
-  <footer class="site-footer">© 2026 Blake Austin Walter</footer>
+  <footer class="site-footer small">© 2026 Blake Austin Walter</footer>
 
 </div>
 

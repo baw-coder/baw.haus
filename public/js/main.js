@@ -1,13 +1,22 @@
 /* baw.haus interactions. Plain JavaScript, no libraries.
-   1. Filter buttons   2. Close buttons in project panels
-   3. Project links (baw.haus/#project-id)   4. Hero video pause button
+   1. Filter buttons
+   2. Opening and closing projects (with the thumbnail growing into the full image)
+   3. Project links (baw.haus/#project-id)
+   4. Hero video pause button
    5. Lightbox for full-size images */
 
 (function () {
-  var projects = document.querySelectorAll(".project");
+  var projects = Array.prototype.slice.call(document.querySelectorAll(".project"));
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var DURATION = 520;
+  var EASE = "cubic-bezier(0.2, 0.7, 0.2, 1)";
+
+  function all(root, selector) {
+    return Array.prototype.slice.call(root.querySelectorAll(selector));
+  }
 
   /* 1. Filters: each project's data-tags lists its categories */
-  var filterButtons = document.querySelectorAll(".filters button");
+  var filterButtons = all(document, ".filters button");
   filterButtons.forEach(function (button) {
     button.addEventListener("click", function () {
       var filter = button.dataset.filter;
@@ -21,70 +30,166 @@
     });
   });
 
-  /* 2. "Close" at the bottom of a project panel */
-  document.querySelectorAll(".project .close").forEach(function (button) {
-    button.addEventListener("click", function () {
-      var project = button.closest(".project");
-      var summary = project.querySelector("summary");
-      project.open = false;
-      if (summary.getBoundingClientRect().top < 0) {
-        summary.scrollIntoView({ block: "start" });
+  /* 2. Opening and closing projects */
+  function setOpen(project, open) {
+    project.classList.toggle("is-open", open);
+    project.querySelector(".project-toggle").setAttribute("aria-expanded", String(open));
+    all(project, ".project-body, .project-gallery, .close").forEach(function (el) {
+      el.hidden = !open;
+    });
+  }
+
+  function afterToggle(project, open) {
+    var top = project.getBoundingClientRect().top;
+    var smooth = reduceMotion.matches ? "auto" : "smooth";
+    if (open) {
+      history.replaceState(null, "", "#" + project.id);
+      if (top < 0 || top > window.innerHeight * 0.5) {
+        project.scrollIntoView({ block: "start", behavior: smooth });
       }
-      summary.focus({ preventScroll: true });
+    } else {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+      if (top < 0) project.scrollIntoView({ block: "start", behavior: smooth });
+    }
+  }
+
+  // Measure where things are, switch layouts, measure again, then animate
+  // each piece from its old place and size to its new one.
+  function animateLayout(project, open, done) {
+    var moving = all(project, ".project-image, .project-title, .project-meta, .project-blurb, .plus");
+    var image = project.querySelector(".project-image");
+    var before = moving.map(function (el) { return el.getBoundingClientRect(); });
+    var startHeight = project.getBoundingClientRect().height;
+
+    setOpen(project, open);
+
+    var after = moving.map(function (el) { return el.getBoundingClientRect(); });
+    var endHeight = project.getBoundingClientRect().height;
+    var timing = { duration: DURATION, easing: EASE };
+    var animations = [];
+
+    project.style.overflow = "hidden";
+    animations.push(project.animate(
+      [{ height: startHeight + "px" }, { height: endHeight + "px" }], timing));
+
+    moving.forEach(function (el, i) {
+      var a = before[i];
+      var b = after[i];
+      var shift = "translate(" + (a.left - b.left) + "px, " + (a.top - b.top) + "px)";
+      if (el === image) {
+        animations.push(el.animate([
+          { width: a.width + "px", height: a.height + "px", transform: shift },
+          { width: b.width + "px", height: b.height + "px", transform: "none" }
+        ], timing));
+      } else if (a.left !== b.left || a.top !== b.top) {
+        animations.push(el.animate([{ transform: shift }, { transform: "none" }], timing));
+      }
+    });
+
+    if (open) {
+      all(project, ".project-body, .project-gallery").forEach(function (el) {
+        animations.push(el.animate(
+          [{ opacity: 0, transform: "translateY(16px)" }, { opacity: 1, transform: "none" }],
+          { duration: DURATION, easing: EASE, delay: DURATION * 0.35, fill: "backwards" }));
+      });
+    }
+
+    Promise.all(animations.map(function (a) { return a.finished; })).then(function () {
+      project.style.overflow = "";
+      done();
+    });
+  }
+
+  function toggle(project, open) {
+    if (project.classList.contains("is-open") === open || project.dataset.busy) return;
+
+    if (reduceMotion.matches || typeof project.animate !== "function") {
+      setOpen(project, open);
+      afterToggle(project, open);
+      return;
+    }
+
+    project.dataset.busy = "true";
+    var run = function () {
+      animateLayout(project, open, function () {
+        delete project.dataset.busy;
+        afterToggle(project, open);
+      });
+    };
+
+    if (open) {
+      run();
+      return;
+    }
+    // Closing: fade the text and gallery out first, then shrink back
+    var fades = all(project, ".project-body, .project-gallery").map(function (el) {
+      return el.animate([{ opacity: 1 }, { opacity: 0 }],
+        { duration: 180, easing: "ease-out", fill: "forwards" });
+    });
+    Promise.all(fades.map(function (f) { return f.finished; })).then(function () {
+      run();
+      fades.forEach(function (f) { f.cancel(); });
+    });
+  }
+
+  projects.forEach(function (project) {
+    project.addEventListener("click", function (event) {
+      if (!project.classList.contains("is-open")) {
+        // Anywhere on a closed entry opens it
+        event.preventDefault();
+        toggle(project, true);
+      } else if (event.target.closest(".project-toggle, .plus, .close")) {
+        event.preventDefault();
+        var fromClose = event.target.closest(".close");
+        toggle(project, false);
+        if (fromClose) project.querySelector(".project-toggle").focus({ preventScroll: true });
+      }
     });
   });
 
-  /* 3. Project links: opening a project puts its id in the address bar,
-        and visiting baw.haus/#its-id opens it */
+  /* 3. Project links: baw.haus/#its-id opens that project */
   function openFromHash() {
     var id = decodeURIComponent(window.location.hash.slice(1));
     if (!id) return;
     var target = document.getElementById(id);
     if (target && target.classList.contains("project")) {
       target.hidden = false;
-      target.open = true;
+      setOpen(target, true);
       target.scrollIntoView({ block: "start" });
     }
   }
   openFromHash();
   window.addEventListener("hashchange", openFromHash);
 
-  projects.forEach(function (project) {
-    project.addEventListener("toggle", function () {
-      if (project.open && project.id) {
-        history.replaceState(null, "", "#" + project.id);
-      }
-    });
-  });
-
   /* 4. Hero video: the pause button appears only once the video plays */
   var video = document.getElementById("hero-video");
-  var toggle = document.querySelector(".video-toggle");
-  if (video && toggle) {
-    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) {
+  var videoToggle = document.querySelector(".video-toggle");
+  if (video && videoToggle) {
+    if (reduceMotion.matches) {
       video.removeAttribute("autoplay");
       video.pause();
     }
     var syncToggle = function () {
-      toggle.hidden = false;
-      toggle.classList.toggle("is-paused", video.paused);
-      toggle.setAttribute("aria-label", video.paused ? "Play video" : "Pause video");
+      videoToggle.hidden = false;
+      videoToggle.classList.toggle("is-paused", video.paused);
+      videoToggle.setAttribute("aria-label", video.paused ? "Play video" : "Pause video");
     };
     video.addEventListener("loadeddata", syncToggle);
     video.addEventListener("play", syncToggle);
     video.addEventListener("pause", syncToggle);
-    toggle.addEventListener("click", function () {
+    videoToggle.addEventListener("click", function () {
       if (video.paused) video.play(); else video.pause();
     });
   }
 
-  /* 5. Lightbox: click a project image to see it full size */
+  /* 5. Lightbox: click an image in an open project to see it full size */
   var lightbox = document.querySelector(".lightbox");
   if (lightbox && typeof lightbox.showModal === "function") {
     var lightboxImg = lightbox.querySelector("img");
-    document.querySelectorAll(".zoom").forEach(function (link) {
+    all(document, ".zoom").forEach(function (link) {
       link.addEventListener("click", function (event) {
+        var project = link.closest(".project");
+        if (project && !project.classList.contains("is-open")) return; // opens the project instead
         event.preventDefault();
         var img = link.querySelector("img");
         lightboxImg.src = link.getAttribute("href");

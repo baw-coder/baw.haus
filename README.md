@@ -1,11 +1,12 @@
 # baw.haus
 
-Portfolio site for Blake Austin Walter. Plain HTML, CSS and a little JavaScript: no framework, no build step. Cloudflare serves everything in `public/`.
+Portfolio site for Blake Austin Walter. Plain HTML, CSS and a little JavaScript: no framework, no build step. Cloudflare serves everything in `public/`, through a small Worker (`src/worker.js`) that adds the password page.
 
 ## What's where
 
 ```
 wrangler.jsonc        Cloudflare settings (the Worker name must match the dashboard)
+src/worker.js         Password page, and the headers that keep search engines out
 public/index.html     The whole page, in commented blocks
 public/css/style.css  Colors, type and spacing (edit :root at the top)
 public/js/main.js     Opening projects, project links, video button, image viewer
@@ -15,7 +16,6 @@ public/video/         Video files (add hero-loop.mp4 here)
 public/cv/            CV PDF (add blake-austin-walter-cv.pdf here)
 public/img/ui/share.jpg  The picture shown when the link is shared (LinkedIn, Slack, iMessage)
 public/robots.txt     Blocks AI crawlers
-public/_headers       Tells search engines not to index the site
 ```
 
 ## Editing the page
@@ -60,6 +60,15 @@ The darkness of the background is `--bg-darken` at the top of `css/style.css` (0
 - Only use images that are already public, and credit them.
 - Hero video: save it as `public/video/hero-loop.mp4` (H.264, silent, under 25 MiB). Until it's there, the still image shows.
 - Each file must be under 25 MiB (Cloudflare's limit).
+
+## Password
+
+While the site is being finished, visitors see a password page first. Once in, a cookie keeps them in for 30 days. The fonts, icons, share picture and robots.txt stay open so the page and link previews work.
+
+- **Open the site to everyone:** in `src/worker.js`, change `const LOCKED = true;` to `false` and push.
+- **Change the password:** in Cloudflare, Worker → Settings → Variables and Secrets → Add, type Secret, name `SITE_PASSWORD`, value the new password. It overrides the one in the code, and everyone has to enter the new one.
+
+The password is stored in the code only as a SHA-256 fingerprint. The password page only guards the website: while this GitHub repository is public, anyone can still read its files on GitHub.
 
 ## Putting it online (Cloudflare)
 

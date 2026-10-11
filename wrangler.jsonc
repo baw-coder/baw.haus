@@ -2,8 +2,13 @@
   // The Worker's name in the Cloudflare dashboard must match this, or builds fail.
   "name": "baw-haus",
   "compatibility_date": "2026-10-09",
+  // Runs before every request: the password page and the no-search-engine
+  // headers. See src/worker.js (set LOCKED to false there to open the site).
+  "main": "src/worker.js",
   // Everything inside ./public is served as the website.
   "assets": {
-    "directory": "./public"
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": true
   }
 }

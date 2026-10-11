@@ -405,22 +405,6 @@ a:hover { text-decoration-color: currentColor; }
   font: var(--caption);
 }
 
-/* "Close" only on phones, where open projects are long */
-.close {
-  grid-area: close;
-  justify-self: start;
-  min-height: 44px;
-  margin-top: var(--space-s);
-  padding: 0;
-  border: 0;
-  background: none;
-  color: inherit;
-  font: var(--caption);
-  cursor: pointer;
-}
-@media (min-width: 761px) {
-  .close { display: none; }
-}
 
 /* ---------- CV: three columns, the third under the project text ---------- */
 
@@ -495,7 +479,7 @@ a:hover { text-decoration-color: currentColor; }
   .project { padding-top: var(--space-s); padding-bottom: var(--space-s); }
   .project { grid-template-areas: "image" "text"; }
   .project.is-open {
-    grid-template-areas: "image" "text" "gallery" "close";
+    grid-template-areas: "image" "text" "gallery";
   }
   .project-image {
     height: auto;

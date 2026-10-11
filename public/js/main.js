@@ -18,7 +18,7 @@
   function setOpen(project, open) {
     project.classList.toggle("is-open", open);
     project.querySelector(".project-toggle").setAttribute("aria-expanded", String(open));
-    all(project, ".project-body, .project-gallery, .close").forEach(function (el) {
+    all(project, ".project-body, .project-gallery").forEach(function (el) {
       el.hidden = !open;
     });
   }
@@ -115,14 +115,9 @@
         // Anywhere on a closed entry opens it
         event.preventDefault();
         toggle(project, true);
-      } else if (event.target.closest(".project-toggle, .plus, .close")) {
+      } else if (event.target.closest(".project-toggle, .plus")) {
+        // The title or the × closes an open entry
         event.preventDefault();
-        // The phone-only Close button sits at the bottom of a long project,
-        // so take the reader back to the project's top as it closes
-        if (event.target.closest(".close")) {
-          project.scrollIntoView({ block: "start", behavior: reduceMotion.matches ? "auto" : "smooth" });
-          project.querySelector(".project-toggle").focus({ preventScroll: true });
-        }
         toggle(project, false);
       }
     });

@@ -26,7 +26,7 @@
   // Measure where things are, switch layouts, measure again, then animate
   // each piece from its old place and size to its new one.
   function animateLayout(project, open, done) {
-    var moving = all(project, ".project-image, .project-title, .project-meta, .project-blurb, .plus");
+    var moving = all(project, ".project-image, .project-text");
     var image = project.querySelector(".project-image");
     // Switch off the hover transition so the measurements are exact
     project.classList.add("is-animating");

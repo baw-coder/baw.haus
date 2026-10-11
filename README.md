@@ -9,7 +9,7 @@ wrangler.jsonc        Cloudflare settings (the Worker name must match the dashbo
 public/index.html     The whole page, in commented blocks
 public/css/style.css  Colors, type and spacing (edit :root at the top)
 public/js/main.js     Opening projects, project links, video button, image viewer
-public/fonts/         Jost, hosted with the site (free; license in OFL.txt)
+public/fonts/         Jost light, medium and semibold, hosted with the site (free; license in OFL.txt)
 public/img/<project>/ Images, one folder per project
 public/video/         Video files (add hero-loop.mp4 here)
 public/cv/            CV PDF (add blake-austin-walter-cv.pdf here)
@@ -25,9 +25,9 @@ Each section of `index.html` starts with a comment like `<!-- BLOCK: project | O
 To add a project, copy any project block and change:
 
 - `id="..."`: a short name with hyphens. It becomes the project's link, for example `baw.haus/#one-north-quay`.
-- The main image in `<figure class="project-image">`. It shows as a strip in the list and in full when the project opens. Set `style="--ratio: 1600 / 1200"` on the figure to the image's width and height. To choose which part shows in the strip, add `style="object-position: 50% 80%"` to the `<img>` (left-right %, top-bottom %).
-- The title, location and role, and the one-line description. The description becomes the first line of the text when the project opens.
-- The text, facts and credit in `<div class="project-body">`.
+- The main image in `<figure class="project-image">`. It fills the wide 2/3 column: a strip in the list, the whole picture when the project opens. Set `style="--ratio: 1600 / 1200"` on the figure to the image's width and height. To choose which part shows in the strip, add `style="object-position: 50% 80%"` to the `<img>` (left-right %, top-bottom %).
+- The title and the description in `<div class="project-text">`. Each project has only these two pieces of text. The description's first line (`project-blurb`) shows in the list; start it with your role in bold, `<strong>Facade lead.</strong>`, and say where the project is in the sentence after it.
+- The rest of the description and the facts in `<div class="project-body">`, which shows when the project opens.
 - The images under it in `<div class="project-gallery">`, as rows (see below).
 
 ### Images under a project
@@ -48,7 +48,9 @@ Each `<div class="g-row">` is one line of pictures. Pictures in a row share a he
 
 Image credits go in `<figcaption class="credit">` inside the image's figure. They stay hidden until someone hovers over the image (on phones they always show). Leave the line out for your own work.
 
-Type is three styles in one color, set at the top of `css/style.css`: `--heading`, `--body` and `--caption`, all in `--text`.
+Type is four styles in one color, set at the top of `css/style.css`: `--heading`, `--body`, bold body (`<strong>`, weight `--bold`) and `--caption`, all in `--text`. Headings and body text grow with the window.
+
+The page runs on one grid: a wide column (2/3) and a narrow one (1/3). Projects and contact put the picture in the wide column; the hero flips it; the CV's third column lines up with the project text. The gap between columns is `--gap`, the page edges `--gutter`.
 
 The darkness of the background is `--bg-darken` at the top of `css/style.css` (0 = full color, 1 = black).
 

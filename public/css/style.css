@@ -40,7 +40,7 @@
 
   /* Type: four styles, one color. Headings and body grow with the window. */
   --font: "Jost", system-ui, sans-serif;
-  --heading-size: clamp(30px, 2.5vw, 60px);   /* sized so the name fits on one line */
+  --heading-size: clamp(30px, 2vw, 48px);  /* most project titles fit on one line */
   --heading: 500 var(--heading-size)/1.15 var(--font);           /* name, section and project titles */
   --body: 300 clamp(18px, 0.45vw + 12.8px, 21px)/1.8 var(--font); /* all reading text */
   --bold: 600;                                                    /* <strong> inside body text */
@@ -58,8 +58,8 @@
   --space-l: clamp(96px, 13.2vmax, 260px);
 
   /* Project list */
-  --strip: 0.265;                         /* closed image height / its width */
-  --peek: min(40px, var(--space-s) - 4px); /* how much a closed image grows on hover */
+  --strip: 0.19;                          /* closed image height / its width (computers) */
+  --project-space: clamp(16px, 1.4vw, 32px); /* above and below each closed project (computers) */
 
   /* Motion */
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -241,7 +241,7 @@ a:hover { text-decoration-color: currentColor; }
   grid-template-areas: "image text";
   column-gap: var(--gap);
   align-items: start;
-  padding: var(--space-s) 0;
+  padding: var(--project-space) 0;
   cursor: pointer;
   scroll-margin-top: 24px;
 }
@@ -261,23 +261,16 @@ a:hover { text-decoration-color: currentColor; }
   position: relative;
   overflow: hidden;
   height: calc((100cqw - var(--gap)) * 2 / 3 * var(--strip));
-  transition: height 0.45s var(--ease), margin-bottom 0.45s var(--ease);
 }
 .project.is-open .project-image {
   height: auto;
   aspect-ratio: var(--ratio, 3 / 2);
 }
-.project.is-animating .project-image { transition: none; }
 
-/* Resting the pointer on a closed entry previews the opening: the strip
-   grows down into the space below it, so nothing else on the page moves.
-   js/main.js adds .is-scrolling while the page scrolls, so entries don't
-   grow and shrink as they pass under a still pointer. */
+/* Pointing at a closed entry brightens its picture; clicking opens it.
+   js/main.js adds .is-scrolling while the page scrolls, so pictures don't
+   flicker as they pass under a still pointer. */
 @media (hover: hover) and (min-width: 761px) {
-  :root:not(.is-scrolling) .project:not(.is-open):hover .project-image {
-    height: calc((100cqw - var(--gap)) * 2 / 3 * var(--strip) + var(--peek));
-    margin-bottom: calc(-1 * var(--peek));
-  }
   .project.is-open .project-image:hover .credit { opacity: 1; }
 }
 @media (hover: none) {
@@ -464,7 +457,7 @@ a:hover { text-decoration-color: currentColor; }
 
 /* ---------- Narrow windows: the hero stacks so the name stays on one line ---------- */
 
-@media (max-width: 1199px) {
+@media (max-width: 1139px) {
   .hero { grid-template-columns: minmax(0, 1fr); row-gap: var(--space-m); }
   .hero-text { max-width: 40em; }
 }
@@ -485,6 +478,7 @@ a:hover { text-decoration-color: currentColor; }
     grid-template-columns: minmax(0, 1fr);
     row-gap: 16px;
   }
+  .project { padding-top: var(--space-s); padding-bottom: var(--space-s); }
   .project { grid-template-areas: "image" "text"; }
   .project.is-open {
     grid-template-areas: "image" "text" "gallery" "close";

@@ -46,7 +46,7 @@ Each `<div class="g-row">` is one line of pictures. Pictures in a row share a he
 
 `--r` is the picture's width / height in pixels. A `<p class="note">` anywhere in a row adds an annotation beside the pictures. Gray hatched boxes (`<div class="tile ph">`) mark pictures still to add.
 
-Image credits go in `<figcaption class="credit">` inside the image's figure. They stay hidden until someone hovers over the image (on phones they always show). Leave the line out for your own work.
+Image credits go in `<figcaption class="credit">` inside the image's figure. They stay hidden until someone hovers over the image; on phones, tapping the image shows its credit. Clicking an image on a computer opens it full size; phones skip that, since images there are already full width. Leave the line out for your own work.
 
 Type is four styles in one color, set at the top of `css/style.css`: `--heading`, `--body`, bold body (`<strong>`, weight `--bold`) and `--caption`, all in `--text`. Headings and body text grow with the window.
 

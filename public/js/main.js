@@ -2,7 +2,7 @@
    1. Opening and closing projects (with the thumbnail growing into the full image)
    2. Project links (baw.haus/#project-id)
    3. Hero video pause button
-   4. Lightbox for full-size images */
+   4. Images: full-size viewer on computers, tap for the credit on phones */
 
 (function () {
   var projects = Array.prototype.slice.call(document.querySelectorAll(".project"));
@@ -23,10 +23,13 @@
     });
   }
 
-  // Measure where things are, switch layouts, measure again, then animate
-  // each piece from its old place and size to its new one.
+  // Measure the image, switch layouts, measure again, then grow or shrink
+  // the image from its old size to its new one. Only the image is animated:
+  // the words either stay put (beside the image on computers) or are carried
+  // down by the image as it grows (below it on phones), so moving them as
+  // well would push them up over the image.
   function animateLayout(project, open, done) {
-    var moving = all(project, ".project-image, .project-text");
+    var moving = all(project, ".project-image");
     var image = project.querySelector(".project-image");
     // Switch off the hover transition so the measurements are exact
     project.classList.add("is-animating");
@@ -170,21 +173,47 @@
     });
   }
 
-  /* 4. Lightbox: click an image in an open project to see it full size */
-  var lightbox = document.querySelector(".lightbox");
-  if (lightbox && typeof lightbox.showModal === "function") {
-    var lightboxImg = lightbox.querySelector("img");
-    all(document, ".zoom").forEach(function (link) {
-      link.addEventListener("click", function (event) {
-        var project = link.closest(".project");
-        if (project && !project.classList.contains("is-open")) return; // opens the project instead
-        event.preventDefault();
-        var img = link.querySelector("img");
-        lightboxImg.src = link.getAttribute("href");
-        lightboxImg.alt = img ? img.alt : "";
-        lightbox.showModal();
-      });
+  /* 4. Images. On computers, clicking an image in an open project shows it
+     full size. On phones and tablets the images are already full width, so
+     tapping one shows or hides its credit or caption instead. */
+  var touchLayout = window.matchMedia("(hover: none), (max-width: 760px)");
+  var captioned = null;
+  function toggleCaption(figure) {
+    if (!figure) return;
+    if (captioned && captioned !== figure) captioned.classList.remove("is-captioned");
+    var on = !figure.classList.contains("is-captioned");
+    figure.classList.toggle("is-captioned", on);
+    captioned = on ? figure : null;
+  }
+
+  // The film and the contact image have captions too
+  all(document, ".hero-media, .contact-media").forEach(function (figure) {
+    figure.addEventListener("click", function (event) {
+      if (!touchLayout.matches || event.target.closest("button")) return;
+      toggleCaption(figure);
     });
+  });
+
+  var lightbox = document.querySelector(".lightbox");
+  var canZoom = lightbox && typeof lightbox.showModal === "function";
+  var lightboxImg = canZoom ? lightbox.querySelector("img") : null;
+  all(document, ".zoom").forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      var project = link.closest(".project");
+      if (project && !project.classList.contains("is-open")) return; // opens the project instead
+      event.preventDefault();
+      if (touchLayout.matches) {
+        toggleCaption(link.closest("figure"));
+        return;
+      }
+      if (!canZoom) return;
+      var img = link.querySelector("img");
+      lightboxImg.src = link.getAttribute("href");
+      lightboxImg.alt = img ? img.alt : "";
+      lightbox.showModal();
+    });
+  });
+  if (canZoom) {
     lightbox.addEventListener("click", function (event) {
       if (event.target === lightbox || event.target.closest(".lightbox-close")) {
         lightbox.close();

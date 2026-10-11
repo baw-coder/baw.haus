@@ -40,7 +40,7 @@
 
   /* Type: four styles, one color. Headings and body grow with the window. */
   --font: "Jost", system-ui, sans-serif;
-  --heading-size: clamp(30px, 2.4vw + 10px, 60px);
+  --heading-size: clamp(30px, 2.5vw, 60px);   /* sized so the name fits on one line */
   --heading: 500 var(--heading-size)/1.15 var(--font);           /* name, section and project titles */
   --body: 300 clamp(18px, 0.45vw + 12.8px, 21px)/1.8 var(--font); /* all reading text */
   --bold: 600;                                                    /* <strong> inside body text */
@@ -48,7 +48,7 @@
 
   /* Grid */
   --page-max: 2400px;
-  --gutter: clamp(20px, 3vw, 72px);       /* page edges */
+  --gutter: max(20px, 5vw);               /* page edges: 5% of the window each side */
   --gap: clamp(24px, 4vw, 96px);          /* between the wide and narrow columns */
   --wide: calc((100% - var(--gap)) * 2 / 3);
 
@@ -59,7 +59,7 @@
 
   /* Project list */
   --strip: 0.265;                         /* closed image height / its width */
-  --peek: 40px;                           /* how much a closed image grows on hover */
+  --peek: min(40px, var(--space-s) - 4px); /* how much a closed image grows on hover */
 
   /* Motion */
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -261,7 +261,7 @@ a:hover { text-decoration-color: currentColor; }
   position: relative;
   overflow: hidden;
   height: calc((100cqw - var(--gap)) * 2 / 3 * var(--strip));
-  transition: height 0.45s var(--ease);
+  transition: height 0.45s var(--ease), margin-bottom 0.45s var(--ease);
 }
 .project.is-open .project-image {
   height: auto;
@@ -269,10 +269,14 @@ a:hover { text-decoration-color: currentColor; }
 }
 .project.is-animating .project-image { transition: none; }
 
-/* Hovering a closed entry previews the opening: the strip grows taller */
+/* Resting the pointer on a closed entry previews the opening: the strip
+   grows down into the space below it, so nothing else on the page moves.
+   js/main.js adds .is-scrolling while the page scrolls, so entries don't
+   grow and shrink as they pass under a still pointer. */
 @media (hover: hover) and (min-width: 761px) {
-  .project:not(.is-open):hover .project-image {
+  :root:not(.is-scrolling) .project:not(.is-open):hover .project-image {
     height: calc((100cqw - var(--gap)) * 2 / 3 * var(--strip) + var(--peek));
+    margin-bottom: calc(-1 * var(--peek));
   }
   .project.is-open .project-image:hover .credit { opacity: 1; }
 }
@@ -292,7 +296,7 @@ a:hover { text-decoration-color: currentColor; }
   filter: brightness(0.82);
   transition: filter 0.3s ease;
 }
-.project:hover .project-image img,
+:root:not(.is-scrolling) .project:hover .project-image img,
 .project.is-open .project-image img { filter: none; }
 .project-image > .ph {
   display: flex;
@@ -437,13 +441,12 @@ a:hover { text-decoration-color: currentColor; }
   align-items: center;
   padding: var(--space-l) 0;
 }
-.contact-media {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
+.contact-media { position: relative; }
 .contact-media img { width: 100%; height: auto; }
-.contact-media figcaption { font: var(--caption); }
+.contact-media:hover .credit { opacity: 1; }
+@media (hover: none) {
+  .contact-media .credit { opacity: 1; }
+}
 .contact-text {
   display: flex;
   flex-direction: column;
@@ -457,6 +460,13 @@ a:hover { text-decoration-color: currentColor; }
 
 @media (max-width: 1100px) and (min-width: 761px) {
   .cv { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ---------- Narrow windows: the hero stacks so the name stays on one line ---------- */
+
+@media (max-width: 1199px) {
+  .hero { grid-template-columns: minmax(0, 1fr); row-gap: var(--space-m); }
+  .hero-text { max-width: 40em; }
 }
 
 /* ---------- Phones: one column ---------- */

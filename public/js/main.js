@@ -125,6 +125,16 @@
     });
   });
 
+  // While the page scrolls, entries passing under a still pointer don't
+  // react to it (see .is-scrolling in style.css)
+  var root = document.documentElement;
+  var scrollTimer;
+  window.addEventListener("scroll", function () {
+    if (!root.classList.contains("is-scrolling")) root.classList.add("is-scrolling");
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function () { root.classList.remove("is-scrolling"); }, 160);
+  }, { passive: true });
+
   /* 2. Project links: baw.haus/#its-id opens that project */
   function openFromHash() {
     var id = decodeURIComponent(window.location.hash.slice(1));

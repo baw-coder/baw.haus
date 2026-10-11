@@ -48,7 +48,7 @@ Each `<div class="g-row">` is one line of pictures. Pictures in a row share a he
 
 Image credits go in `<figcaption class="credit">` inside the image's figure. They stay hidden until someone hovers over the image (on phones they always show). Leave the line out for your own work.
 
-Type is three sizes only, set at the top of `css/style.css`: `--heading`, `--body` and `--caption`.
+Type is three styles in one color, set at the top of `css/style.css`: `--heading`, `--body` and `--caption`, all in `--text`.
 
 The darkness of the background is `--bg-darken` at the top of `css/style.css` (0 = full color, 1 = black).
 

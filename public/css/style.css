@@ -159,14 +159,18 @@ a:hover { text-decoration-color: currentColor; }
   pointer-events: none;
 }
 
-/* ---------- Hero: words in the narrow column, film in the wide one ---------- */
+/* ---------- Hero: words in the narrow column, film in the wide one ----------
+   Fills the first screen on its own, centered top to bottom, with the name
+   level with the top of the film. The caption appears on hover. */
 
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) var(--wide);
   column-gap: var(--gap);
-  align-items: start;
-  padding: var(--space-m) 0 var(--space-l);
+  align-items: start;      /* name level with the top of the film */
+  align-content: center;   /* the pair sits in the middle of the screen */
+  min-height: 100svh;
+  padding: var(--space-m) 0;
 }
 
 .hero-text {
@@ -175,12 +179,22 @@ a:hover { text-decoration-color: currentColor; }
   gap: var(--space-s);
 }
 
-.hero-media {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.hero-media { position: relative; }
+/* Hangs below the film without taking up space, so the centering ignores it */
+.hero-media figcaption {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding-top: 14px;
+  max-width: 48em;
+  font: var(--caption);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
-.hero-media figcaption { font: var(--caption); max-width: 48em; }
+.hero-media:hover figcaption { opacity: 1; }
+@media (hover: none) {
+  .hero-media figcaption { opacity: 1; }
+}
 
 .video-frame {
   position: relative;
@@ -471,7 +485,6 @@ a:hover { text-decoration-color: currentColor; }
     grid-template-columns: minmax(0, 1fr);
     row-gap: var(--space-m);
   }
-  .hero { padding-top: var(--space-l); }
 
   .project,
   .project.is-open {

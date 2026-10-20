@@ -82,3 +82,9 @@ After that, every change pushed to `main` goes live automatically.
 ## Using baw.haus as the address
 
 Worker → Domains & Routes → Add → Custom Domain → `baw.haus`. Cloudflare can't add it while an old CNAME record for that name exists, so delete the Squarespace records first. Don't touch the MX records: they run your email.
+
+## Search visibility and privacy
+
+The site sends `noindex, nofollow, noimageindex, noarchive, nosnippet` in HTML and HTTP headers, including for non-HTML files. Search engines are allowed in `robots.txt` so they can read the `noindex` rule; listed AI crawlers are disallowed. These directives are **not access control or a guarantee of invisibility**. The GitHub repository is public and exposes the files even while the Worker is locked.
+
+The Worker remains password-protected while `const LOCKED = true;`. Set it to `false` once the custom domain and content are ready for direct-link sharing. Some automated applicant-review crawlers may respect the AI-crawler exclusions, so direct-link access for human recipients does not guarantee automated access.

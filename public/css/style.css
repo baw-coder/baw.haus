@@ -231,6 +231,27 @@ a:hover { text-decoration-color: currentColor; }
 .video-toggle.is-paused .icon-play { display: block; }
 .video-toggle.is-paused .icon-pause { display: none; }
 
+/* ---------- Communication: compact editorial evidence, no unapproved imagery ---------- */
+
+.communication { padding: 0 0 var(--space-m); }
+.communication h2 {
+  margin: 0 0 clamp(24px, 3.3vmax, 64px);
+  font: 500 15px/1.5 var(--font);
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+.communication-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: var(--space-s);
+}
+.communication-grid h3 { margin: 0 0 0.65em; font: 500 clamp(19px, 1.25vw, 23px)/1.3 var(--font); }
+.communication-grid p { font: 300 clamp(16px, 0.36vw + 12px, 18px)/1.65 var(--font); }
+@media (max-width: 760px) {
+  .communication-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
 /* ---------- Work ---------- */
 
 /* "Selected work" is for screen readers; the project titles carry the page */

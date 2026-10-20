@@ -16,6 +16,7 @@ User-agent: meta-externalagent
 User-agent: cohere-ai
 Disallow: /
 
-# Search engines may crawl, so they can read the noindex tag and leave the site out of results.
+# Search engines need to crawl the page to read its noindex response header.
+# Blocking them here could allow URL-only indexing when external sites link to it.
 User-agent: *
 Allow: /

@@ -13,7 +13,7 @@
    The password is stored only as a SHA-256 fingerprint, never as text.
    This also sets the headers that keep the site out of search engines. */
 
-const LOCKED = true;
+const LOCKED = false;
 const PASSWORD_SHA256 = "0e6a8e0b849ed9b064c5a25e1ee5592f427e3eb9d250e42069ce46147d00e8d4";
 
 const COOKIE = "baw_pass";

@@ -72,7 +72,7 @@ export default {
 async function serve(request, env, path, isPrivate) {
   const res = await env.ASSETS.fetch(request);
   const out = new Response(res.body, res);
-  out.headers.set("X-Robots-Tag", "noindex, noimageindex");
+  out.headers.set("X-Robots-Tag", "noindex, nofollow, noimageindex, noarchive, nosnippet");
   if (path.startsWith("/fonts/")) {
     // Fonts never change once published, so browsers can keep them
     out.headers.set("Cache-Control", "public, max-age=31536000, immutable");
@@ -87,7 +87,7 @@ function baseHeaders() {
   return {
     "Content-Type": "text/plain; charset=utf-8",
     "Cache-Control": "no-store",
-    "X-Robots-Tag": "noindex, noimageindex",
+    "X-Robots-Tag": "noindex, nofollow, noimageindex, noarchive, nosnippet",
   };
 }
 
@@ -122,10 +122,10 @@ function loginPage(next, failed, status) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Blake Austin Walter, AIA</title>
-<meta name="robots" content="noindex, noimageindex">
-<meta name="description" content="Architect and filmmaker. Associate Principal at KPF in London.">
+<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nosnippet">
+<meta name="description" content="Designer and Associate Principal at KPF. Architecture, presentations, publications and moving image.">
 <meta property="og:title" content="Blake Austin Walter, AIA">
-<meta property="og:description" content="Architect and filmmaker. Associate Principal at KPF in London.">
+<meta property="og:description" content="Architecture, visual communication, presentations, publications and moving image.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://baw.haus/">
 <meta property="og:image" content="https://baw.haus/img/ui/share.jpg">
@@ -187,7 +187,7 @@ input:focus-visible, button:focus-visible { outline: 2px solid #f3efe9; outline-
     headers: {
       "Content-Type": "text/html; charset=utf-8",
       "Cache-Control": "no-store",
-      "X-Robots-Tag": "noindex, noimageindex",
+      "X-Robots-Tag": "noindex, nofollow, noimageindex, noarchive, nosnippet",
     },
   });
 }

@@ -24,27 +24,20 @@
   font-style: normal;
   font-display: swap;
 }
-@font-face {
-  font-family: "Jost";
-  src: url("../fonts/jost-latin-600-normal.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   /* Color */
   --ink: #04050c;                         /* page color behind everything */
   --text: #f3efe9;                        /* every word on the site, one color */
   --bg-darken: 0.8;                       /* 0 = full gradient, 1 = black */
 
-  /* Type: four styles, one color. Headings and body grow with the window. */
+  /* Three text styles site-wide, all Jost: headings, body and captions.
+     Strong emphasis reuses the heading weight. */
   --font: "Jost", system-ui, sans-serif;
-  --heading-size: clamp(30px, 2vw, 48px);  /* most project titles fit on one line */
-  --heading: 500 var(--heading-size)/1.15 var(--font);           /* name, section and project titles */
-  --body: 300 clamp(18px, 0.45vw + 12.8px, 21px)/1.8 var(--font); /* all reading text */
-  --bold: 600;                                                    /* <strong> inside body text */
-  --caption: 300 15px/1.5 var(--font);                            /* image captions, notes, credits, footer */
+  --heading-size: clamp(30px, 2vw, 48px);
+  --heading: 500 var(--heading-size)/1.15 var(--font);
+  --body: 300 clamp(18px, 0.45vw + 12.8px, 21px)/1.8 var(--font);
+  --caption: 300 15px/1.5 var(--font);
+  --bold: 500;
 
   /* Grid */
   --page-max: 2400px;
@@ -250,9 +243,7 @@ a:hover { text-decoration-color: currentColor; }
   opacity: 0.7;
 }
 .publication-kicker {
-  font: 500 14px/1.5 var(--font);
-  letter-spacing: 0.075em;
-  text-transform: uppercase;
+  font: var(--caption);
   margin-bottom: 18px;
 }
 .publication-copy h2 { margin-bottom: 24px; }
@@ -274,9 +265,7 @@ a:hover { text-decoration-color: currentColor; }
 .communication { padding: 0 0 var(--space-m); }
 .communication h2 {
   margin: 0 0 clamp(24px, 3.3vmax, 64px);
-  font: 500 15px/1.5 var(--font);
-  letter-spacing: 0.075em;
-  text-transform: uppercase;
+  font: var(--heading);
 }
 .communication-grid {
   display: grid;
@@ -284,8 +273,8 @@ a:hover { text-decoration-color: currentColor; }
   column-gap: var(--gap);
   row-gap: var(--space-s);
 }
-.communication-grid h3 { margin: 0 0 0.65em; font: 500 clamp(19px, 1.25vw, 23px)/1.3 var(--font); }
-.communication-grid p { font: 300 clamp(16px, 0.36vw + 12px, 18px)/1.65 var(--font); }
+.communication-grid h3 { margin: 0 0 0.65em; font: var(--heading); }
+.communication-grid p { font: var(--body); }
 @media (max-width: 760px) {
   .communication-grid { grid-template-columns: minmax(0, 1fr); }
 }

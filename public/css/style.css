@@ -231,6 +231,44 @@ a:hover { text-decoration-color: currentColor; }
 .video-toggle.is-paused .icon-play { display: block; }
 .video-toggle.is-paused .icon-pause { display: none; }
 
+/* ---------- Featured publication ----------
+   Remains hidden until all three images exist, avoiding broken gallery images
+   during the GitHub asset-upload step. */
+
+.publication { padding: 0 0 var(--space-m); scroll-margin-top: 24px; }
+.publication-lead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--gap);
+  align-items: center;
+}
+.publication-photo a { display: block; cursor: zoom-in; }
+.publication-photo img { width: 100%; height: auto; }
+.publication-photo figcaption {
+  margin-top: 9px;
+  font: var(--caption);
+  opacity: 0.7;
+}
+.publication-kicker {
+  font: 500 14px/1.5 var(--font);
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.publication-copy h2 { margin-bottom: 24px; }
+.publication-copy p:not(.publication-kicker) + p { margin-top: 0.8em; }
+.publication-spreads {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-s);
+  margin-top: var(--space-s);
+}
+@media (max-width: 760px) {
+  .publication-lead { grid-template-columns: minmax(0, 1fr); }
+  .publication-cover { max-width: 480px; }
+  .publication-copy h2 { margin-bottom: 14px; }
+}
+
 /* ---------- Communication: compact editorial evidence, no unapproved imagery ---------- */
 
 .communication { padding: 0 0 var(--space-m); }

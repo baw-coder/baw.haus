@@ -14,6 +14,26 @@
     return Array.prototype.slice.call(root.querySelectorAll(selector));
   }
 
+  /* The feature stays hidden until all three publication files are present.
+     This permits deploying markup first and uploading images afterwards. */
+  var publication = document.getElementById("north-quay-publication");
+  if (publication) {
+    var publicationImages = all(publication, "img[data-publication-src]");
+    Promise.all(publicationImages.map(function (img) {
+      return new Promise(function (resolve) {
+        var probe = new Image();
+        probe.onload = function () {
+          img.src = img.getAttribute("data-publication-src");
+          resolve(true);
+        };
+        probe.onerror = function () { resolve(false); };
+        probe.src = img.getAttribute("data-publication-src");
+      });
+    })).then(function (loaded) {
+      if (loaded.length === 3 && loaded.every(Boolean)) publication.hidden = false;
+    });
+  }
+
   /* 1. Opening and closing projects */
   function setOpen(project, open) {
     project.classList.toggle("is-open", open);

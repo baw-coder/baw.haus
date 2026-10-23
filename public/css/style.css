@@ -224,11 +224,10 @@ a:hover { text-decoration-color: currentColor; }
 .video-toggle.is-paused .icon-play { display: block; }
 .video-toggle.is-paused .icon-pause { display: none; }
 
-/* ---------- Featured publication ----------
-   Remains hidden until all three images exist, avoiding broken gallery images
-   during the GitHub asset-upload step. */
+/* ---------- One North Quay client and team book ----------
+   Embedded in the case study and shown only after its images load. */
 
-.publication { padding: 0 0 var(--space-m); scroll-margin-top: 24px; }
+.publication { padding: 0; margin-top: var(--space-s); scroll-margin-top: 24px; }
 .publication-lead {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -258,25 +257,6 @@ a:hover { text-decoration-color: currentColor; }
   .publication-lead { grid-template-columns: minmax(0, 1fr); }
   .publication-cover { max-width: 480px; }
   .publication-copy h2 { margin-bottom: 14px; }
-}
-
-/* ---------- Communication: compact editorial evidence, no unapproved imagery ---------- */
-
-.communication { padding: 0 0 var(--space-m); }
-.communication h2 {
-  margin: 0 0 clamp(24px, 3.3vmax, 64px);
-  font: var(--heading);
-}
-.communication-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: var(--gap);
-  row-gap: var(--space-s);
-}
-.communication-grid h3 { margin: 0 0 0.65em; font: var(--heading); }
-.communication-grid p { font: var(--body); }
-@media (max-width: 760px) {
-  .communication-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* ---------- Work ---------- */

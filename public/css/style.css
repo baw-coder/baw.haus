@@ -260,8 +260,12 @@ a:hover { text-decoration-color: currentColor; }
   margin-top: var(--space-s);
 }
 @media (max-width: 760px) {
-  .publication-lead,
-  .publication-spreads .publication-photo { grid-template-columns: minmax(0, 1fr); row-gap: 12px; }
+  .publication-lead { grid-template-columns: minmax(0, 1fr); row-gap: 16px; }
+  .publication-spreads .publication-photo {
+    grid-template-columns: minmax(0, 1fr) minmax(88px, 28%);
+    column-gap: 12px;
+    align-items: start;
+  }
   .publication-copy h2 { margin-bottom: 14px; }
   .publication-photo figcaption { text-align: left; }
 }

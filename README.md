@@ -58,7 +58,7 @@ The darkness of the background is `--bg-darken` at the top of `css/style.css` (0
 
 - Images: JPEG, about 2,000 px on the long edge, quality about 80. Name files by what they show (`one-north-quay-public-realm.jpg`), never by internal document names.
 - Only use images that are already public, and credit them.
-- Hero film: Vimeo video `669177184` loads only when the preview is activated. To change it, update the link, `data-vimeo-id` and fallback Vimeo link in `public/index.html`. Ensure Vimeo allows embedding on baw.haus.
+- Hero film: Vimeo video `669177184` is embedded directly in a responsive iframe with standard playback controls. To change it, update the iframe `src` and fallback Vimeo link in `public/index.html`. In Vimeo, enable embedding for baw.haus; if the video is unlisted, use Vimeo's complete embed URL including its privacy hash.
 - Each file must be under 25 MiB (Cloudflare's limit).
 
 ## Public availability

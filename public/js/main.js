@@ -1,8 +1,8 @@
 /* baw.haus interactions. Plain JavaScript, no libraries.
    1. Opening and closing projects (with the thumbnail growing into the full image)
    2. Project links (baw.haus/#project-id)
-   3. Hero video pause button
-   4. Images: full-size viewer on computers, tap for the credit on phones */
+   3. Click-to-load Vimeo player
+   4. Images: full-size viewer on desktop and mobile */
 
 (function () {
   var projects = Array.prototype.slice.call(document.querySelectorAll(".project"));
@@ -14,30 +14,15 @@
     return Array.prototype.slice.call(root.querySelectorAll(selector));
   }
 
-  /* The feature stays hidden until all three publication files are present.
-     This permits deploying markup first and uploading images afterwards. */
-  var publication = document.getElementById("north-quay-publication");
-  if (publication) {
-    var publicationImages = all(publication, "img[data-publication-src]");
-    Promise.all(publicationImages.map(function (img) {
-      return new Promise(function (resolve) {
-        var probe = new Image();
-        probe.onload = function () {
-          img.src = img.getAttribute("data-publication-src");
-          resolve(true);
-        };
-        probe.onerror = function () { resolve(false); };
-        probe.src = img.getAttribute("data-publication-src");
-      });
-    })).then(function (loaded) {
-      if (loaded.length === 3 && loaded.every(Boolean)) publication.hidden = false;
-    });
-  }
-
   /* 1. Opening and closing projects */
   function setOpen(project, open) {
     project.classList.toggle("is-open", open);
-    project.querySelector(".project-toggle").setAttribute("aria-expanded", String(open));
+    var button = project.querySelector(".project-toggle");
+    button.setAttribute("aria-expanded", String(open));
+    var cover = project.querySelector(".project-image a.zoom");
+    if (cover) {
+      if (open) cover.removeAttribute("tabindex"); else cover.tabIndex = -1;
+    }
     all(project, ".project-body, .project-gallery").forEach(function (el) {
       el.hidden = !open;
     });
@@ -90,11 +75,12 @@
       });
     }
 
-    Promise.all(animations.map(function (a) { return a.finished; })).then(function () {
+    function finish() {
       project.style.overflow = "";
       project.classList.remove("is-animating");
       done();
-    });
+    }
+    Promise.all(animations.map(function (a) { return a.finished; })).then(finish, finish);
   }
 
   function toggle(project, open) {
@@ -123,14 +109,18 @@
       return el.animate([{ opacity: 1 }, { opacity: 0 }],
         { duration: 180, easing: "ease-out", fill: "forwards" });
     });
-    Promise.all(fades.map(function (f) { return f.finished; })).then(function () {
+    function finishFade() {
       run();
       fades.forEach(function (f) { f.cancel(); });
-    });
+    }
+    Promise.all(fades.map(function (f) { return f.finished; })).then(finishFade, finishFade);
   }
 
   projects.forEach(function (project) {
+    setOpen(project, false);
+    project.querySelector(".project-toggle").disabled = false;
     project.addEventListener("click", function (event) {
+      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       if (!project.classList.contains("is-open")) {
         // Anywhere on a closed entry opens it
         event.preventDefault();
@@ -155,7 +145,9 @@
 
   /* 2. Project links: baw.haus/#its-id opens that project */
   function openFromHash() {
-    var id = decodeURIComponent(window.location.hash.slice(1));
+    var id;
+    try { id = decodeURIComponent(window.location.hash.slice(1)); }
+    catch (_) { return; }
     if (!id) return;
     var target = document.getElementById(id);
     if (target && target.classList.contains("project")) {
@@ -167,48 +159,23 @@
   openFromHash();
   window.addEventListener("hashchange", openFromHash);
 
-  /* 3. Hero video: the pause button appears only once the video plays */
-  var video = document.getElementById("hero-video");
-  var videoToggle = document.querySelector(".video-toggle");
-  if (video && videoToggle) {
-    if (reduceMotion.matches) {
-      video.removeAttribute("autoplay");
-      video.pause();
-    }
-    var syncToggle = function () {
-      videoToggle.hidden = false;
-      videoToggle.classList.toggle("is-paused", video.paused);
-      videoToggle.setAttribute("aria-label", video.paused ? "Play video" : "Pause video");
-    };
-    video.addEventListener("loadeddata", syncToggle);
-    video.addEventListener("play", syncToggle);
-    video.addEventListener("pause", syncToggle);
-    videoToggle.addEventListener("click", function () {
-      if (video.paused) video.play(); else video.pause();
+  /* 3. Load Vimeo only following an intentional playback action. */
+  var heroPlay = document.querySelector(".hero-play");
+  if (heroPlay) {
+    heroPlay.addEventListener("click", function (event) {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      var frame = document.createElement("iframe");
+      frame.src = "https://player.vimeo.com/video/" + heroPlay.getAttribute("data-vimeo-id") + "?autoplay=1&dnt=1";
+      frame.title = "Bartlett MArch thesis film";
+      frame.allow = "autoplay; fullscreen; picture-in-picture";
+      frame.allowFullscreen = true;
+      heroPlay.replaceWith(frame);
+      frame.focus();
     });
   }
 
-  /* 4. Images. On computers, clicking an image in an open project shows it
-     full size. On phones and tablets the images are already full width, so
-     tapping one shows or hides its credit or caption instead. */
-  var touchLayout = window.matchMedia("(hover: none), (max-width: 760px)");
-  var captioned = null;
-  function toggleCaption(figure) {
-    if (!figure) return;
-    if (captioned && captioned !== figure) captioned.classList.remove("is-captioned");
-    var on = !figure.classList.contains("is-captioned");
-    figure.classList.toggle("is-captioned", on);
-    captioned = on ? figure : null;
-  }
-
-  // The film and the contact image have captions too
-  all(document, ".hero-media, .contact-media").forEach(function (figure) {
-    figure.addEventListener("click", function (event) {
-      if (!touchLayout.matches || event.target.closest("button")) return;
-      toggleCaption(figure);
-    });
-  });
-
+  /* 4. Images: full-size viewer on desktop and mobile. */
   var lightbox = document.querySelector(".lightbox");
   var canZoom = lightbox && typeof lightbox.showModal === "function";
   var lightboxImg = canZoom ? lightbox.querySelector("img") : null;
@@ -216,19 +183,20 @@
     link.addEventListener("click", function (event) {
       var project = link.closest(".project");
       if (project && !project.classList.contains("is-open")) return; // opens the project instead
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || !canZoom) return;
       event.preventDefault();
-      if (touchLayout.matches) {
-        toggleCaption(link.closest("figure"));
-        return;
-      }
-      if (!canZoom) return;
       var img = link.querySelector("img");
+      lightboxImg.hidden = false;
       lightboxImg.src = link.getAttribute("href");
       lightboxImg.alt = img ? img.alt : "";
       lightbox.showModal();
     });
   });
   if (canZoom) {
+    lightbox.addEventListener("close", function () {
+      lightboxImg.hidden = true;
+      lightboxImg.removeAttribute("src");
+    });
     lightbox.addEventListener("click", function (event) {
       if (event.target === lightbox || event.target.closest(".lightbox-close")) {
         lightbox.close();

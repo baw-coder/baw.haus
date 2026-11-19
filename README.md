@@ -12,7 +12,7 @@ public/css/style.css  Colors, type and spacing (edit :root at the top)
 public/js/main.js     Opening projects, project links, video button, image viewer
 public/fonts/         Jost light, medium and semibold, hosted with the site (free; license in OFL.txt)
 public/img/<project>/ Images, one folder per project
-public/video/         Video files (add hero-loop.mp4 here)
+                       Hero film is hosted on Vimeo
 public/cv/            CV PDF (add blake-austin-walter-cv.pdf here)
 public/img/ui/share.jpg  The picture shown when the link is shared (LinkedIn, Slack, iMessage)
 public/robots.txt     Blocks AI crawlers
@@ -24,7 +24,7 @@ Each section of `index.html` starts with a comment like `<!-- BLOCK: project | O
 
 To add a project, copy any project block and change:
 
-- `id="..."`: a short name with hyphens. It becomes the project's link, for example `baw.haus/#one-north-quay`.
+- `id="..."`: a short name with hyphens. It becomes the project's link, for example `baw.haus/#one-north-quay`. Match the `-body` and `-gallery` IDs in the title button's `aria-controls`.
 - The main image in `<figure class="project-image">`. It fills the wide 2/3 column: a strip in the list, the whole picture when the project opens. Set `style="--ratio: 1600 / 1200"` on the figure to the image's width and height. To choose which part shows in the strip, add `style="object-position: 50% 80%"` to the `<img>` (left-right %, top-bottom %).
 - The title and the description in `<div class="project-text">`. Each project has only these two pieces of text. The description's first line (`project-blurb`) shows in the list; start it with your role in bold, `<strong>Facade lead.</strong>`, and say where the project is in the sentence after it.
 - The rest of the description and the facts in `<div class="project-body">`, which shows when the project opens.
@@ -46,7 +46,7 @@ Each `<div class="g-row">` is one line of pictures. Pictures in a row share a he
 
 `--r` is the picture's width / height in pixels. A `<p class="note">` anywhere in a row adds an annotation beside the pictures. Gray hatched boxes (`<div class="tile ph">`) mark pictures still to add.
 
-Image credits go in `<figcaption class="credit">` inside the image's figure. They stay hidden until someone hovers over the image; on phones, tapping the image shows its credit. Clicking an image on a computer opens it full size; phones skip that, since images there are already full width. Leave the line out for your own work.
+Image credits go in `<figcaption class="credit">` inside the image's figure. They appear on hover or keyboard focus and remain visible on touch devices. Clicking an image opens its full-size viewer on supported browsers, including phones. Leave the line out for your own work.
 
 Type is four styles in one color, set at the top of `css/style.css`: `--heading`, `--body`, bold body (`<strong>`, weight `--bold`) and `--caption`, all in `--text`. Headings and body text grow with the window.
 
@@ -58,7 +58,7 @@ The darkness of the background is `--bg-darken` at the top of `css/style.css` (0
 
 - Images: JPEG, about 2,000 px on the long edge, quality about 80. Name files by what they show (`one-north-quay-public-realm.jpg`), never by internal document names.
 - Only use images that are already public, and credit them.
-- Hero video: save it as `public/video/hero-loop.mp4` (H.264, silent, under 25 MiB). Until it's there, the still image shows.
+- Hero film: Vimeo video `669177184` loads only when the preview is activated. To change it, update the link, `data-vimeo-id` and fallback Vimeo link in `public/index.html`. Ensure Vimeo allows embedding on baw.haus.
 - Each file must be under 25 MiB (Cloudflare's limit).
 
 ## Public availability
@@ -106,15 +106,13 @@ conflicting obsolete website DNS record; preserve email-related records.
 ## North Quay publication images
 
 The homepage includes a featured North Quay Life Sciences KPF book section
-with three images. The section remains hidden until all three are available.
-Place these exact **WebP** files in `public/img/one-north-quay/`:
+with three images now present in `public/img/one-north-quay/`, loaded lazily:
 
 - `north-quay-book-cover.webp`
 - `north-quay-book-facade-strategy.webp`
 - `north-quay-book-vertical-laboratory.webp`
 
 The images can be uploaded using GitHub's **Add file → Upload files** interface.
-After the last image is committed, the feature appears automatically on reload.
 The dark Jost design, project gallery and existing no-index configuration remain
 unchanged. The author must check that the KPF publication imagery is cleared
 for public portfolio use.

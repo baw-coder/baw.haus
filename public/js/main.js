@@ -1,8 +1,7 @@
 /* baw.haus interactions. Plain JavaScript, no libraries.
    1. Opening and closing projects (with the thumbnail growing into the full image)
    2. Project links (baw.haus/#project-id)
-   3. Click-to-load Vimeo player
-   4. Images: full-size viewer on desktop and mobile */
+   3. Images: full-size viewer on desktop and mobile */
 
 (function () {
   var projects = Array.prototype.slice.call(document.querySelectorAll(".project"));
@@ -159,23 +158,7 @@
   openFromHash();
   window.addEventListener("hashchange", openFromHash);
 
-  /* 3. Load Vimeo only following an intentional playback action. */
-  var heroPlay = document.querySelector(".hero-play");
-  if (heroPlay) {
-    heroPlay.addEventListener("click", function (event) {
-      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-      event.preventDefault();
-      var frame = document.createElement("iframe");
-      frame.src = "https://player.vimeo.com/video/" + heroPlay.getAttribute("data-vimeo-id") + "?autoplay=1&dnt=1";
-      frame.title = "Bartlett MArch thesis film";
-      frame.allow = "autoplay; fullscreen; picture-in-picture";
-      frame.allowFullscreen = true;
-      heroPlay.replaceWith(frame);
-      frame.focus();
-    });
-  }
-
-  /* 4. Images: full-size viewer on desktop and mobile. */
+  /* 3. Images: full-size viewer on desktop and mobile. */
   var lightbox = document.querySelector(".lightbox");
   var canZoom = lightbox && typeof lightbox.showModal === "function";
   var lightboxImg = canZoom ? lightbox.querySelector("img") : null;

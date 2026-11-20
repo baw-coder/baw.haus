@@ -32,7 +32,7 @@ To add a project, copy any project block and change:
 
 ### Images under a project
 
-Each `<div class="g-row">` is one line of pictures. Pictures in a row share a height and split the width by their shape, so one picture fills the row, two share it, three share it, and so on. Mix rows however you like.
+Each `<div class="g-row">` is one line of pictures. Pictures in a row share a height and split the wide column by their shape, so one picture fills it, two share it, three share it, and so on. Every row starts at the left edge; a picture too tall for the window gets narrower rather than sitting centered. Mix rows however you like.
 
 ```html
 <div class="g-row">
@@ -40,17 +40,19 @@ Each `<div class="g-row">` is one line of pictures. Pictures in a row share a he
     <a class="zoom" href="img/project/file.jpg"><img src="img/project/file.jpg" alt="What the image shows" loading="lazy"></a>
     <figcaption class="credit">Image: Who made it</figcaption>
   </figure>
-  <p class="note">A short annotation. It takes a quarter of the row.</p>
+  <p class="note">A short annotation. It sits in the narrow column.</p>
 </div>
 ```
 
-`--r` is the picture's width / height in pixels. A `<p class="note">` anywhere in a row adds an annotation beside the pictures. Gray hatched boxes (`<div class="tile ph">`) mark pictures still to add.
+`--r` is the picture's width / height in pixels. A `<p class="note">` at the end of a row adds an annotation in the narrow column, level with the project text and the foot of its pictures. Gray hatched boxes (`<div class="tile ph">`) mark pictures still to add.
 
 Image credits go in `<figcaption class="credit">` inside the image's figure. They appear on hover or keyboard focus and remain visible on touch devices. Clicking an image opens its full-size viewer on supported browsers, including phones. Leave the line out for your own work.
 
 Type is four styles in one color, set at the top of `css/style.css`: `--heading`, `--body`, bold body (`<strong>`, weight `--bold`) and `--caption`, all in `--text`. Headings and body text grow with the window.
 
 The page runs on one grid: a wide column (2/3) and a narrow one (1/3). Projects and contact put the picture in the wide column; the hero flips it; the CV's third column lines up with the project text. The gap between columns is `--gap`, the page edges `--gutter`.
+
+Every gap in the work list is one size, `--space` at the top of `css/style.css`: between pictures side by side, between rows of pictures, and between one project and the next. Change that one value and they all follow. (`--space-s`, `-m` and `-l` only separate whole sections: hero, work, CV, contact.)
 
 The darkness of the background is `--bg-darken` at the top of `css/style.css` (0 = full color, 1 = black).
 

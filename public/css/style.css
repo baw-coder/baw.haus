@@ -45,15 +45,18 @@
   --gap: clamp(24px, 4vw, 96px);          /* between the wide and narrow columns */
   --wide: calc((100% - var(--gap)) * 2 / 3);
 
-  /* Space (vmax grows with the window, like the Squarespace site) */
+  /* Space. --space is the one gap in the work list: between pictures side by
+     side, between rows of pictures, and between one project and the next.
+     Change it here and every gap follows. The -s/-m/-l sizes are only for
+     the breaks between whole sections (hero, work, CV, contact). */
+  --space: clamp(16px, 1.6vw, 40px);
   --space-s: clamp(24px, 3.3vmax, 64px);
   --space-m: clamp(48px, 6.6vmax, 128px);
   --space-l: clamp(96px, 13.2vmax, 260px);
 
   /* Project list */
   --strip: 0.19;                          /* closed image height / its width (computers) */
-  --project-space: clamp(16px, 1.4vw, 32px); /* above and below each closed project (computers) */
-  --media-max-height: 70svh;            /* galleries fit within a widescreen viewport */
+  --media-max-height: 70svh;              /* tallest a picture may be (.project refines it) */
 
   /* Motion */
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -223,13 +226,13 @@ a:hover { text-decoration-color: currentColor; }
 /* ---------- One North Quay client and team book ----------
    Embedded in the case study and shown only after its images load. */
 
-.publication { padding: 0; margin-top: var(--space-s); scroll-margin-top: 24px; }
+.publication { padding: 0; margin: 0; scroll-margin-top: 24px; }
 .publication-lead,
 .publication-spreads .publication-photo {
   display: grid;
   grid-template-columns: var(--wide) minmax(0, 1fr);
   column-gap: var(--gap);
-  align-items: center;
+  align-items: end;        /* words sit at the foot of their picture, like gallery notes */
 }
 .publication-photo a { display: block; width: fit-content; max-width: 100%; cursor: zoom-in; }
 .publication-photo img {
@@ -251,11 +254,11 @@ a:hover { text-decoration-color: currentColor; }
 .publication-spreads {
   display: flex;
   flex-direction: column;
-  gap: var(--space-s);
-  margin-top: var(--space-s);
+  gap: var(--space);
+  margin-top: var(--space);
 }
 @media (max-width: 760px) {
-  .publication-lead { grid-template-columns: minmax(0, 1fr); row-gap: 16px; }
+  .publication-lead { grid-template-columns: minmax(0, 1fr); row-gap: var(--space); }
   .publication-spreads .publication-photo {
     grid-template-columns: minmax(0, 1fr) minmax(88px, 28%);
     column-gap: 12px;
@@ -285,7 +288,11 @@ a:hover { text-decoration-color: currentColor; }
   column-gap: var(--gap);
   align-items: start;
   align-content: start;   /* rows never stretch while js/main.js animates the height */
-  padding: var(--project-space) 0;
+  padding: calc(var(--space) / 2) 0;   /* half above, half below: one --space between projects */
+  /* Tallest a picture may be: 70% of the window's height, raised just enough
+     that a 3:2 picture still fills the wide column, and never more than 90%
+     of the window. So landscape pictures all end on the same right edge. */
+  --media-max-height: min(90svh, max(70svh, (100cqw - var(--gap)) * 4 / 9));
   cursor: pointer;
   scroll-margin-top: 24px;
 }
@@ -294,7 +301,6 @@ a:hover { text-decoration-color: currentColor; }
   grid-template-areas:
     "image   text"
     "gallery gallery";
-  padding-bottom: var(--space-m);
   cursor: auto;
 }
 
@@ -308,17 +314,12 @@ a:hover { text-decoration-color: currentColor; }
 }
 .project.is-open .project-image {
   height: auto;
-  width: fit-content;
-  max-width: 100%;
-  aspect-ratio: auto;
+  width: min(100%, calc(var(--media-max-height) * (var(--ratio, 16 / 9))));
+  aspect-ratio: var(--ratio, 16 / 9);
 }
-.project.is-open .project-image > a { width: fit-content; max-width: 100%; height: auto; }
 .project.is-open .project-image img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: var(--media-max-height);
   object-fit: contain;
+  object-position: left top;
 }
 
 /* Pointing at a closed entry brightens its picture; clicking opens it.
@@ -415,39 +416,46 @@ a:hover { text-decoration-color: currentColor; }
 
 /* Images below: each .g-row is one line of pictures at a shared height.
    Give every picture style="--r: width / height" and the row sizes itself,
-   so one picture fills the width, two share it, and so on. A .note is a
-   short annotation that takes a quarter of its row. */
+   so one picture fills the wide column, two share it, and so on. Every row
+   starts at the left edge. A picture too tall for the window gets narrower
+   instead of being centered in a wide box. A .note at the end of a row is a
+   short annotation: it sits in the narrow column, level with the project
+   text, at the foot of its pictures. */
 .project-gallery {
   grid-area: gallery;
-  margin-top: var(--space-m);
+  margin-top: var(--space);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space);
 }
 .g-row {
   display: flex;
-  gap: 10px;
-  align-items: stretch;
+  gap: var(--space);
+  align-items: flex-start;
   max-width: var(--wide);
 }
 .g-row:has(> .note) { max-width: 100%; }
+/* Each picture starts at the tallest it may be and they all shrink together
+   until the row fits, which keeps their heights equal. */
 .tile {
   position: relative;
-  flex: calc(var(--r, 1.5)) 1 0;
+  flex: 0 1 auto;
+  width: calc(var(--media-max-height) * (var(--r, 1.5)));
   min-width: 0;
   aspect-ratio: var(--r, 1.5);
-  max-height: var(--media-max-height);
   overflow: hidden;
 }
 @media (hover: hover) {
   .tile:hover .credit { opacity: 1; }
 }
 .tile a { display: block; width: 100%; height: 100%; cursor: zoom-in; }
-.tile img { width: 100%; height: 100%; object-fit: contain; }
+.tile img { width: 100%; height: 100%; object-fit: contain; object-position: left top; }
+/* The narrow column, plus what separates it from the pictures */
 .note {
-  flex: 0 0 25%;
+  flex: 0 0 calc((100% - var(--gap)) / 3 + var(--gap) - var(--space));
   align-self: flex-end;
-  padding: 0 0 4px 16px;
+  margin-left: auto;
+  padding: 0 0 0 calc(var(--gap) - var(--space));
   font: var(--caption);
 }
 
@@ -520,9 +528,10 @@ a:hover { text-decoration-color: currentColor; }
   .project,
   .project.is-open {
     grid-template-columns: minmax(0, 1fr);
-    row-gap: 16px;
+    row-gap: var(--space);
   }
-  .project { padding-top: var(--space-s); padding-bottom: var(--space-s); }
+  /* Twice the gap between projects, so each title stays with its own picture */
+  .project { padding-top: var(--space); padding-bottom: var(--space); }
   .project { grid-template-areas: "image" "text"; }
   .project.is-open {
     grid-template-areas: "image" "text" "gallery";
@@ -531,10 +540,10 @@ a:hover { text-decoration-color: currentColor; }
     height: auto;
     aspect-ratio: 400 / 106;
   }
-  .project-gallery { margin-top: var(--space-s); }
+  .project-gallery { margin-top: 0; }
   .g-row { flex-wrap: wrap; max-width: 100%; }
-  .tile { flex: 1 1 calc(50% - 5px); }
-  .note { flex: 1 1 100%; padding: 0; }
+  .tile { flex: 1 1 calc(50% - var(--space) / 2); width: auto; max-height: var(--media-max-height); }
+  .note { flex: 1 1 100%; margin-left: 0; padding: 0; }
 }
 
 /* ---------- Lightbox (full-size images) ---------- */
